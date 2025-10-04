@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+<!--  -->
+{% for i in ContactSlider %}
+<div class="breadcumb-wrapper" data-bg-src="{{ i.image.url }}">
+    <div class="container z-index-common">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ i.name|safe }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'homePage' %}">Home</a></li>
+                <li>{{ i.name|safe }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!--  -->
+<div class="space">
+    <div class="container">
+        <div class="row gy-4">
+{% for i in Contact %}
+            <div class="col-xl-3 col-sm-6">
+                <div class="contact-feature">
+                    <div class="contact-feature_icon"><img src="{% static 'assets/img/update_2/icon/contact_feature_1.svg' %}"
+                            alt="Icon"></div>
+                    <h4 class="box-title">{{ i.title1|safe }}</h4><span class="contact-feature_text">{{ i.name1|safe }}<br>{{ i.name11|safe }}</span>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="contact-feature">
+                    <div class="contact-feature_icon"><img src="{% static 'assets/img/update_2/icon/contact_feature_2.svg' %}"
+                            alt="Icon"></div>
+                    <h4 class="box-title">{{ i.title2|safe }}</h4><span class="contact-feature_text"><a
+                            href="mailto:{{ i.name2|safe }}">{{ i.name2|safe }}</a> <a
+                            href="mailto:{{ i.name22|safe }}">{{ i.name22|safe }}</a></span>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="contact-feature">
+                    <div class="contact-feature_icon"><img src="{% static 'assets/img/update_2/icon/contact_feature_3.svg' %}"
+                            alt="Icon"></div>
+                    <h4 class="box-title">{{ i.title3|safe }}</h4><span class="contact-feature_text"><a
+                            href="tel:+{{ i.name3|safe }}">+{{ i.name3|safe }}</a> <a
+                            href="tel:+{{ i.name33|safe }}">+{{ i.name33|safe }}</a></span>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="contact-feature">
+                    <div class="contact-feature_icon"><img src="{% static 'assets/img/update_2/icon/contact_feature_4.svg' %}"
+                            alt="Icon"></div>
+                    <h4 class="box-title">{{ i.title4|safe }}</h4><span class="contact-feature_text">{{ i.name4|safe }}<br>{{ i.name44|safe }}</span>
+                </div>
+            </div>
+{% endfor %}
+        </div>
+    </div>
+</div>
+
+<!--  -->
+<div class="" id="mapSec">
+    <div class="contact-map2"><iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.7310056272386!2d89.2286059153658!3d24.00527418490799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fe9b97badc6151%3A0x30b048c9fb2129bc!2sThemeholy!5e0!3m2!1sen!2sbd!4v1651028958211!5m2!1sen!2sbd"
+            allowfullscreen="" loading="lazy"></iframe></div>
+</div>
+
+<!--  -->
+<div class="gallery-thumb-area">
+    <div class="row gx-10 th-carousel" id="gallerySlide1" data-slide-show="8" data-ml-slide-show="7"
+        data-lg-slide-show="6" data-md-slide-show="5" data-sm-slide-show="4" data-xs-slide-show="3"
+        data-focuson-select="false">
+        {% for i in Gallery %}
+        <div class="col-auto">
+            <div class="gallery-thumb"><img src="{{ i.image.url }}" alt="Gallery Image"> <a href="{{ i.image.url }}"
+                    class="gallery-btn popup-image"><i class="fab fa-instagram"></i></a></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

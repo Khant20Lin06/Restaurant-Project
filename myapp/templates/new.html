@@ -1,0 +1,250 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<!--  -->
+{% for i in NewSlider %}
+<div class="breadcumb-wrapper" data-bg-src="{{ i.image.url }}">
+    <div class="container z-index-common">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ i.name|safe }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'homePage' %}">Home</a></li>
+                <li>{{ i.name|safe }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!--  -->
+<section class="th-blog-wrapper space-top space-extra-bottom">
+    <div class="container">
+        <div class="row">
+{% for i in New %}
+            <div class="col-xxl-8 col-lg-7">
+                <div class="th-blog blog-single has-post-thumbnail">
+                    <div class="blog-img">
+                        <a href="{% url 'newDetailPage' %}"><img src="{{ i.image.url }}" alt="Blog Image" /></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <a href=""><i class="fa-regular fa-user"></i>{{ i.name|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date|safe }}</a>
+                            <a href="{% url 'newDetailPage' %}"><i class="fa-regular fa-comments"></i>{{ i.comment|safe }}</a>
+                            <a href=""><i class="fa-regular fa-tag"></i>{{ i.food|safe }}</a>
+                        </div>
+                        <h2 class="blog-title">
+                            <a href="{% url 'newDetailPage' %}">{{ i.title|safe }}</a>
+                        </h2>
+                        <p class="blog-text">
+                            {{ i.description|safe }}
+                        </p>
+                        <a href="{% url 'newDetailPage' %}" class="th-btn rounded-2">Read More<i
+                                class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="th-blog blog-single has-post-thumbnail">
+                    <div class="blog-img th-carousel" data-arrows="true" data-slide-show="1" data-fade="true">
+                        <a href="{% url 'newDetailPage' %}"><img src="{{ i.image1.url }}" alt="Blog Image" /></a><a
+                            href="{% url 'newDetailPage' %}"><img src="{{ i.image2.url }}" alt="Blog Image" /></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <a href=""><i class="fa-regular fa-user"></i>{{ i.name1|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date1|safe }}</a>
+                            <a href="{% url 'newDetailPage' %}"><i class="fa-regular fa-comments"></i>{{ i.comment1|safe }}</a>
+                            <a href=""><i class="fa-regular fa-tag"></i>{{ i.food1|safe }}</a>
+                        </div>
+                        <h2 class="blog-title">
+                            <a href="{% url 'newDetailPage' %}">{{ i.title1|safe }}</a>
+                        </h2>
+                        <p class="blog-text">
+                            {{ i.description1|safe }}
+                        </p>
+                        <a href="{% url 'newDetailPage' %}" class="th-btn rounded-2">Read More<i
+                                class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="th-blog blog-single">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <a href=""><i class="fa-regular fa-user"></i>{{ i.name2|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date2|safe }}</a>
+                            <a href="{% url 'newDetailPage' %}"><i class="fa-regular fa-comments"></i>{{ i.comment2|safe }}</a>
+                            <a href=""><i class="fa-regular fa-tag"></i>{{ i.food2|safe }}</a>
+                        </div>
+                        <h2 class="blog-title">
+                            <a href="{% url 'newDetailPage' %}">{{ i.title2|safe }}</a>
+                        </h2>
+                        <p class="blog-text">
+                            {{ i.description2|safe }}
+                        </p>
+                        <a href="{% url 'newDetailPage' %}" class="th-btn rounded-2">Read More<i
+                                class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="th-blog blog-single has-post-thumbnail">
+                    <div class="blog-img">
+                        <a href="{% url 'newDetailPage' %}"><img src="{{ i.image3.url }}" alt="Blog Image" /></a><a
+                            href="{{ i.video3|safe }}" class="play-btn popup-video"><i
+                                class="fas fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <a href=""><i class="fa-regular fa-user"></i>{{ i.name3|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date3|safe }}</a>
+                            <a href="{% url 'newDetailPage' %}"><i class="fa-regular fa-comments"></i>{{ i.comment3|safe }}</a>
+                            <a href=""><i class="fa-regular fa-tag"></i>{{ i.food3|safe }}</a>
+                        </div>
+                        <h2 class="blog-title">
+                            <a href="{% url 'newDetailPage' %}">{{ i.title3|safe }}</a>
+                        </h2>
+                        <p class="blog-text">
+                            {{ i.description3|safe }}
+                        </p>
+                        <a href="{% url 'newDetailPage' %}" class="th-btn rounded-2">Read More<i
+                                class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="th-blog blog-single has-post-thumbnail">
+                    <div class="blog-audio">
+                        <iframe title="{{ i.name44|safe }}"
+                            src="{{ i.video4|safe }}"></iframe>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <a href=""><i class="fa-regular fa-user"></i>{{ i.name4|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date4|safe }}</a>
+                            <a href="{% url 'newDetailPage' %}"><i class="fa-regular fa-comments"></i>{{ i.comment4|safe }}</a>
+                            <a href=""><i class="fa-regular fa-tag"></i>{{ i.food4|safe }}</a>
+                        </div>
+                        <h2 class="blog-title">
+                            <a href="{% url 'newDetailPage' %}">{{ i.title4|safe }}</a>
+                        </h2>
+                        <p class="blog-text">
+                            {{ i.description4|safe }}
+                        </p>
+                        <a href="{% url 'newDetailPage' %}" class="th-btn rounded-2">Read More<i
+                                class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="th-pagination">
+                    <ul>
+                        <li><a href="{% url 'newPage' %}">1</a></li>
+                        <li><a href="{% url 'newPage' %}">2</a></li>
+                        <li><a href="{% url 'newPage' %}">3</a></li>
+                        <li>
+                            <a href="{% url 'newPage' %}"><i class="far fa-arrow-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+{% endfor %}
+            <div class="col-xxl-4 col-lg-5">
+                <aside class="sidebar-area">
+                    <div class="widget widget_search">
+                        <form class="search-form">
+                            <input type="text" placeholder="Search..." />
+                            <button type="submit"><i class="far fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="widget widget_categories">
+                        <h3 class="widget_title">Categories</h3>
+                        <ul>
+                            <li>
+                                <img class="icon" src="{% static 'assets/img/icon/category_1_1.svg' %}" alt="icon" />
+                                <a href="blog.html">Burger</a> <span>{{ categories1 }}</span>
+                            </li>
+                            <li>
+                                <img class="icon" src="{% static 'assets/img/icon/category_1_2.svg' %}" alt="icon" />
+                                <a href="blog.html">Pizza</a> <span>{{ categories2 }}</span>
+                            </li>
+                            <li>
+                                <img class="icon" src="{% static 'assets/img/icon/category_1_3.svg' %}" alt="icon" />
+                                <a href="blog.html">Combo</a> <span>{{ categories3 }}</span>
+                            </li>
+                            <li>
+                                <img class="icon" src="{% static 'assets/img/icon/category_1_4.svg' %}" alt="icon" />
+                                <a href="blog.html">Chicken</a> <span>{{ categories5 }}</span>
+                            </li>
+                            <li>
+                                <img class="icon" src="{% static 'assets/img/icon/category_1_5.svg' %}" alt="icon" />
+                                <a href="blog.html">Drinks</a> <span>{{ categories6 }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <div class="author-widget-wrap">
+{% for i in Profile %}
+                            <div class="avater">
+                                <img src="{{ i.image.url }}" alt="avater" />
+                            </div>
+                            <div class="author-info">
+                                <h4 class="name">
+                                    <a class="text-inherit" href="classes.html">{{ i.name|safe }}</a>
+                                </h4>
+                            </div>
+                            <p class="author-bio">
+                                {{ i.description|safe }}
+                            </p>
+                            <div class="author-social">
+                                <a href="{{ i.fb|safe }}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ i.x|safe }}"><i class="fab fa-twitter"></i></a>
+                                <a href="{{ i.p|safe }}"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="{{ i.linkIn|safe }}"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                            
+{% endfor %}
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <h3 class="widget_title">Recent Posts</h3>
+                        <div class="recent-post-wrap">
+{% for i in Post %}
+                            <div class="recent-post">
+                                <div class="media-img">
+                                    <a href="{% url 'newDetailPage' %}"><img src="{{ i.image.url }}"
+                                            alt="Blog Image" /></a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="post-title">
+                                        <a class="text-inherit" href="{% url 'newDetailPage' %}">{{ i.name|safe }}</a>
+                                    </h4>
+                                    <div class="recent-post-meta">
+                                        <a href="{% url 'newDetailPage' %}"><i class="fal fa-calendar-days"></i>{{ i.date|safe }}</a>
+                                    </div>
+                                </div>
+                            </div>
+{% endfor %}
+                        </div>
+                    </div>
+                    <div class="widget widget_tag_cloud">
+                        <h3 class="widget_title">Popular Tags</h3>
+                        <div class="tagcloud">
+{% for i in Tag %}
+                            <a href="{% url 'menuPage' %}">{{ i.name|safe }}</a>
+{% endfor %}
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  -->
+<div class="gallery-thumb-area">
+    <div class="row gx-10 th-carousel" id="gallerySlide1" data-slide-show="8" data-ml-slide-show="7"
+        data-lg-slide-show="6" data-md-slide-show="5" data-sm-slide-show="4" data-xs-slide-show="3"
+        data-focuson-select="false">
+        {% for i in Gallery %}
+        <div class="col-auto">
+            <div class="gallery-thumb">
+                <img src="{{ i.image.url }}" alt="Gallery Image" />
+                <a href="{{ i.image.url }}" class="gallery-btn popup-image"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

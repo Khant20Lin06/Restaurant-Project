@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+<!--  -->
+{% for i in MenuSlider %}
+<div class="breadcumb-wrapper" data-bg-src="{{ i.image.url }}">
+        <div class="container z-index-common">
+            <div class="breadcumb-content">
+                <h1 class="breadcumb-title">{{ i.name|safe }}</h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="{% url 'homePage' %}">Home</a></li>
+                    <li>{{ i.name|safe }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<!--  -->
+<section class="space">
+        <div class="container">
+            <div class="row gy-30">
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image1.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category1|safe }}</h3>
+                            <p class="text">{{ i.category11|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category1 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category11 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image2.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category2|safe }}</h3>
+                            <p class="text">{{ i.category22|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category2 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category22 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image3.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category3|safe }}</h3>
+                            <p class="text">{{ i.category33|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category3 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category33 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image4.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category4|safe }}</h3>
+                            <p class="text">{{ i.category44|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category4 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category44 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image5.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category5|safe }}</h3>
+                            <p class="text">{{ i.category55|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category5 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category55 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                <div class="col-xl-4 col-lg-6">
+{% for i in MenuCategory %}
+                        <div class="food-menu-header" data-bg-src="{{ i.image6.url }}">
+                            <h3 class="title" data-bg-src="assets/img/update_2/bg/menu_title_bg.svg">{{ i.category6|safe }}</h3>
+                            <p class="text">{{ i.category66|safe }}</p>
+                        </div>
+{% endfor %}
+{% for i in Category6 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+{% for i in Category66 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.description|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
+                                            style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of 5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">{{ i.price|safe }}</span>
+                        </div>
+{% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!--  -->
+<div class="gallery-thumb-area">
+        <div class="row gx-10 th-carousel" id="gallerySlide1" data-slide-show="8" data-ml-slide-show="7"
+            data-lg-slide-show="6" data-md-slide-show="5" data-sm-slide-show="4" data-xs-slide-show="3"
+            data-focuson-select="false">
+{% for i in Gallery %}
+            <div class="col-auto">
+                <div class="gallery-thumb"><img src="{{ i.image.url }}" alt="Gallery Image"> <a
+                        href="{{ i.image.url }}" class="gallery-btn popup-image"><i
+                            class="fab fa-instagram"></i></a></div>
+            </div>
+{% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
