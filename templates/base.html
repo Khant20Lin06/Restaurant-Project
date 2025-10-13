@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="eg">
 <!-- Mirrored from themeholy.com/html/pizzan/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 14:48:58 GMT -->
 
 <head>
@@ -37,6 +37,21 @@
     <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <style>
+        .product-big-img {
+            width: 100%; 
+            padding: auto;        /* container width အပြည့်ဖြစ်စေ */
+            max-width: 450px;    /* ကြီးသင့်တဲ့အများဆုံး အကျယ် (လိုချင်သလိုပြင်နိုင်) */
+            min-width: 50px;
+            padding: 10px;    /* center align */
+        }
+
+        .product-big-img .img img {
+            width: 100%;         /* image အပြည့်ဖြစ်စေ */
+            height: auto;        /* aspect ratio အတိအကျထား */
+            object-fit: contain; /* image distortion မဖြစ်အောင် */
+        }
+    </style>
 </head>
 <body>
 
@@ -49,6 +64,19 @@
     <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'assets/js/app.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+        function changeImage(element) {
+            document.getElementById("mainImage").src = element.src;
+
+            // Remove old active class
+            document.querySelectorAll(".thumbnails img").forEach(img => {
+                img.classList.remove("active");
+            });
+
+            // Add new active class
+            element.classList.add("active");
+        }
+    </script>
 </body>
 <!-- Mirrored from themeholy.com/html/pizzan/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 14:48:58 GMT -->
 

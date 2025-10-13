@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'myapp',
     'myadmin',
     "django_ckeditor_5",
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'myapp.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

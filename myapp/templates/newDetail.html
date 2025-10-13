@@ -197,7 +197,7 @@
                     <div class="widget widget_tag_cloud">
                         <h3 class="widget_title">Popular Tags</h3>
                         <div class="tagcloud">
-{% for i in Tag %}
+{% for i in tag %}
                             <a href="{% url 'menuPage' %}">{{ i.name|safe }}</a>
 {% endfor %}
                         </div>

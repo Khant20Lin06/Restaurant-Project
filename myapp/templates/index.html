@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block body %}
 
@@ -7,106 +8,106 @@
 
 <!-- Slider -->
 <div class="d-none d-md-block">
-        <div class="ls-wp-container fitvidsignore hero-2 th-hero-carousel"
-            style="width:1920px;height:800px;margin:0 auto;margin-bottom: 0px;">
-{% for i in MainSlider %}
-            <div class="ls-slide" data-ls="duration:6000; transition2d:5,114; kenburnsscale:1.2;"><img width="1920"
-                    height="800" src="{{ i.bgImage.url }}" class="ls-bg" alt="bg"> <img width="133"
-                    height="168" src="{% static 'assets/img/hero/hero_shape_4.png' %}" class="ls-l ls-img-layer" alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat;"
-                    data-ls="offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; durationout:5000; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
-                <img width="153" height="149" src="{% static 'assets/img/hero/hero_shape_5.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:47px; left:811px;"
-                    data-ls="offsetxin:100; offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; durationout:1500; parallax:true; parallaxlevel:8; parallaxdurationmove:400; position:fixed;">
-                <img width="153" height="149" src="{% static 'assets/img/hero/hero_shape_6.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:302px; left:160px;"
-                    data-ls="offsetxin:-300; offsetyin:100; durationin:1500; delayin:80; rotatein:60; durationout:1500; parallax:true; parallaxlevel:10; parallaxdurationmove:800; position:fixed;">
-                <img width="190" height="118" src="{% static 'assets/img/hero/hero_shape_7.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:658px; left:28px;"
-                    data-ls="offsetyin:200; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
-                <img width="200" height="173" src="{% static 'assets/img/hero/hero_shape_8.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:593px; left:586px;"
-                    data-ls="offsetxin:100; offsetyin:300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
-                <img width="539" height="456" src="{% static 'assets/img/hero/hero_shape_2.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:29px; left:182px;"
-                    data-ls="offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; parallax:true; parallaxlevel:10; parallaxdurationmove:400; position:fixed;">
-                <img width="943" height="763" src="{% static 'assets/img/hero/hero_shape_3.png' %}" class="ls-l ls-img-layer"
-                    alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:19px; left:0px;"
-                    data-ls="offsetxin:-600; durationin:1500; delayin:80; bgcolorin:transparent; colorin:transparent; position:fixed;">
-                <img width="291" height="27" src="{% static 'assets/img/hero/title_line.png' %}"
-                    class="ls-l ls-hide-tablet ls-hide-phone ls-img-layer" alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:458px; left:485px;"
-                    data-ls="durationin:1500; delayin:400; clipin:0 100% 0 0; position:fixed;"> <img width="291"
-                    height="27" src="{% static 'assets/img/hero/title_line.png' %}"
-                    class="ls-l ls-hide-desktop ls-hide-phone ls-img-layer" alt="hero img"
-                    style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:495px; left:308px; width:374px; height:35px;"
-                    data-ls="durationin:1500; delayin:400; clipin:0 100% 0 0; position:fixed;"> <a style=""
-                    class="ls-l ls-hide-tablet ls-hide-phone" href="{% url 'shopPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
-                        style="font-size:14px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; width:162px; left:344px; top:510px; text-transform:capitalize; line-height:14px; padding-bottom:20px; padding-top:22px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D;"
-                        class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
-                    class="ls-l ls-hide-tablet ls-hide-phone" href="{% url 'menuPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
-                        style="font-size:14px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; width:162px; left:530px; top:510px; text-transform:capitalize; line-height:14px; padding-bottom:20px; padding-top:22px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#EB0029;"
-                        class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:222px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
-                    class="ls-l ls-hide-tablet ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into1|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:301px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
-                    class="ls-l ls-hide-tablet ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into2|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:380px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
-                    class="ls-l hero-title ls-hide-tablet ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span></h1><a style=""
-                    class="ls-l ls-hide-desktop ls-hide-phone" href="{% url 'shopPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
-                        style="font-size:32px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:78px; top:549px; text-transform:capitalize; padding-bottom:30px; padding-top:30px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D; line-height:32px; width:270px;"
-                        class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
-                    class="ls-l ls-hide-desktop ls-hide-phone" href="{% url 'menuPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
-                        style="font-size:32px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:378px; top:549px; text-transform:capitalize; padding-bottom:30px; padding-top:30px; font-weight:600; border-radius:999px 999px 999px 999px; line-height:32px; width:310px; background-color:#eb0029;"
-                        class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:160px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l ls-hide-desktop ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into1|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:276px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l ls-hide-desktop ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into2|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:391px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l hero-title ls-hide-desktop ls-hide-phone ls-text-layer"
-                    data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span></h1><a style=""
-                    class="ls-l ls-hide-desktop ls-hide-tablet" href="{% url 'shopPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
-                        style="font-size:42px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:78px; top:549px; text-transform:capitalize; padding-bottom:40px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D; line-height:42px; width:340px; padding-top:40px;"
-                        class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
-                    class="ls-l ls-hide-desktop ls-hide-tablet" href="{% url 'menuPage' %}" target="_self"
-                    data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
-                        style="font-size:42px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:464px; top:549px; text-transform:capitalize; padding-bottom:40px; padding-top:40px; font-weight:600; border-radius:999px 999px 999px 999px; line-height:42px; background-color:#eb0029; width:400px;"
-                        class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:149px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l ls-hide-desktop ls-hide-tablet ls-text-layer"
-                    data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into1|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:264px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l ls-hide-desktop ls-hide-tablet ls-text-layer"
-                    data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into2|safe }}</h1>
-                <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:378px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
-                    class="ls-l hero-title ls-hide-desktop ls-hide-tablet ls-text-layer"
-                    data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
-                    {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span>
+    <div class="ls-wp-container fitvidsignore hero-2 th-hero-carousel"
+        style="width:1920px;height:800px;margin:0 auto;margin-bottom: 0px;">
+        {% for i in MainSlider %}
+        <div class="ls-slide" data-ls="duration:6000; transition2d:5,114; kenburnsscale:1.2;"><img width="1920"
+                height="800" src="{{ i.bgImage.url }}" class="ls-bg" alt="bg"> <img width="133" height="168"
+                src="{% static 'assets/img/hero/hero_shape_4.png' %}" class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat;"
+                data-ls="offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; durationout:5000; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
+            <img width="153" height="149" src="{% static 'assets/img/hero/hero_shape_5.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:47px; left:811px;"
+                data-ls="offsetxin:100; offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; durationout:1500; parallax:true; parallaxlevel:8; parallaxdurationmove:400; position:fixed;">
+            <img width="153" height="149" src="{% static 'assets/img/hero/hero_shape_6.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:302px; left:160px;"
+                data-ls="offsetxin:-300; offsetyin:100; durationin:1500; delayin:80; rotatein:60; durationout:1500; parallax:true; parallaxlevel:10; parallaxdurationmove:800; position:fixed;">
+            <img width="190" height="118" src="{% static 'assets/img/hero/hero_shape_7.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:658px; left:28px;"
+                data-ls="offsetyin:200; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
+            <img width="200" height="173" src="{% static 'assets/img/hero/hero_shape_8.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:593px; left:586px;"
+                data-ls="offsetxin:100; offsetyin:300; durationin:1500; delayin:80; rotatein:40deg; bgcolorin:transparent; colorin:transparent; parallax:true; parallaxlevel:12; parallaxdurationmove:400; position:fixed;">
+            <img width="539" height="456" src="{% static 'assets/img/hero/hero_shape_2.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:29px; left:182px;"
+                data-ls="offsetyin:-300; durationin:1500; delayin:80; rotatein:40deg; parallax:true; parallaxlevel:10; parallaxdurationmove:400; position:fixed;">
+            <img width="943" height="763" src="{% static 'assets/img/hero/hero_shape_3.png' %}"
+                class="ls-l ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:19px; left:0px;"
+                data-ls="offsetxin:-600; durationin:1500; delayin:80; bgcolorin:transparent; colorin:transparent; position:fixed;">
+            <img width="291" height="27" src="{% static 'assets/img/hero/title_line.png' %}"
+                class="ls-l ls-hide-tablet ls-hide-phone ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:458px; left:485px;"
+                data-ls="durationin:1500; delayin:400; clipin:0 100% 0 0; position:fixed;"> <img width="291" height="27"
+                src="{% static 'assets/img/hero/title_line.png' %}"
+                class="ls-l ls-hide-desktop ls-hide-phone ls-img-layer" alt="hero img"
+                style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; top:495px; left:308px; width:374px; height:35px;"
+                data-ls="durationin:1500; delayin:400; clipin:0 100% 0 0; position:fixed;"> <a style=""
+                class="ls-l ls-hide-tablet ls-hide-phone" href="{% url 'shopPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
+                    style="font-size:14px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; width:162px; left:344px; top:510px; text-transform:capitalize; line-height:14px; padding-bottom:20px; padding-top:22px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D;"
+                    class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
+                class="ls-l ls-hide-tablet ls-hide-phone" href="{% url 'menuPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
+                    style="font-size:14px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; width:162px; left:530px; top:510px; text-transform:capitalize; line-height:14px; padding-bottom:20px; padding-top:22px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#EB0029;"
+                    class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:222px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
+                class="ls-l ls-hide-tablet ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into1|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:301px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
+                class="ls-l ls-hide-tablet ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into2|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:80px; top:380px; left:340px; color:#ffffff; font-size:70px; white-space:normal;"
+                class="ls-l hero-title ls-hide-tablet ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span></h1><a style=""
+                class="ls-l ls-hide-desktop ls-hide-phone" href="{% url 'shopPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
+                    style="font-size:32px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:78px; top:549px; text-transform:capitalize; padding-bottom:30px; padding-top:30px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D; line-height:32px; width:270px;"
+                    class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
+                class="ls-l ls-hide-desktop ls-hide-phone" href="{% url 'menuPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
+                    style="font-size:32px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:378px; top:549px; text-transform:capitalize; padding-bottom:30px; padding-top:30px; font-weight:600; border-radius:999px 999px 999px 999px; line-height:32px; width:310px; background-color:#eb0029;"
+                    class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:160px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l ls-hide-desktop ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into1|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:276px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l ls-hide-desktop ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into2|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:391px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l hero-title ls-hide-desktop ls-hide-phone ls-text-layer"
+                data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span></h1><a style=""
+                class="ls-l ls-hide-desktop ls-hide-tablet" href="{% url 'shopPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:180; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#ff9d2d; position:fixed;"><ls-layer
+                    style="font-size:42px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:78px; top:549px; text-transform:capitalize; padding-bottom:40px; font-weight:600; border-radius:999px 999px 999px 999px; background-color:#FF9D2D; line-height:42px; width:340px; padding-top:40px;"
+                    class="ls-button-layer">{{ i.order|safe }}</ls-layer></a><a style=""
+                class="ls-l ls-hide-desktop ls-hide-tablet" href="{% url 'menuPage' %}" target="_self"
+                data-ls="offsetxin:500; delayin:200; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-120; durationout:800; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; hover:true; hoveropacity:1; hoverbgcolor:#ffffff; hovercolor:#eb0029; position:fixed;"><ls-layer
+                    style="font-size:42px; color:#fff; text-align:center; font-family:Rubik; cursor:pointer; left:464px; top:549px; text-transform:capitalize; padding-bottom:40px; padding-top:40px; font-weight:600; border-radius:999px 999px 999px 999px; line-height:42px; background-color:#eb0029; width:400px;"
+                    class="ls-button-layer">{{ i.menu|safe }}</ls-layer></a>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:149px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l ls-hide-desktop ls-hide-tablet ls-text-layer"
+                data-ls="offsetxin:500; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into1|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:264px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l ls-hide-desktop ls-hide-tablet ls-text-layer"
+                data-ls="offsetxin:500; delayin:80; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into2|safe }}</h1>
+            <h1 style="text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:700; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; font-family:Rubik; line-height:110px; top:378px; left:72px; color:#ffffff; font-size:100px; white-space:normal;"
+                class="ls-l hero-title ls-hide-desktop ls-hide-tablet ls-text-layer"
+                data-ls="offsetxin:500; delayin:160; easingin:easeOutBack; bgcolorin:transparent; colorin:transparent; offsetxout:-80; durationout:400; startatout:slidechangeonly + ; bgcolorout:transparent; colorout:transparent; position:fixed;">
+                {{ i.into3|safe }} <span class="font-style text-theme2">{{ i.into4|safe }}</span>
                 <!-- </h1><a style=""
                     class="ls-l ls-hide-tablet ls-hide-phone" href="#'{{ i.num|safe }}'" target="_self"
                     data-ls="static:forever; position:fixed;"><ls-layer
@@ -130,651 +131,590 @@
                     alt="hero img"
                     style="font-size:36px; color:#000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; left:124px; top:464px;"
                     data-ls="static:forever; position:fixed;"> -->
-            </div>
-{% endfor %}
         </div>
+        {% endfor %}
     </div>
+</div>
 
 
 <!-- Menu -->
 <section class="product-sec space-top" id="shop-sec">
 {% for i in Menu %}
-        <div class="shape-mockup jump" data-top="40%" data-left="0%"><img src="{{ i.tImage.url }}"
-                alt="shape"></div>
-        <div class="shape-mockup moving" data-top="17%" data-right="7%"><img src="{{ i.bImage.url }}"
-                alt="shape"></div>
-        <div class="container">
-            <div class="row justify-content-md-between justify-content-center align-items-center">
-                <div class="title-area mb-40 text-center wow fadeInUp"><span class="sub-title mt-n1">{{ i.title|safe }}</span>
-                    <h2 class="sec-title">{{ i.name|safe }}</h2>
-                </div>
-            </div>
-{% endfor %}
-            <div class="row th-carousel productSlide" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2"
-                data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
-{% for i in categories %}
-                <div class="col-lg-4 col-sm-6">
-                    <div class="th-menu">
-                        <div class="th-menu_img"><img class="spin" src="{{ i.image.url }}"
-                                alt="menu Image" style="width:150px; height:auto;">
-                            <div class="product-action"><a href="cart.html"><span class="action-text">Add To
-                                        cart</span><span class="icon"><i class="far fa-cart-shopping"></i></span></a> <a
-                                    href="wishlist.html"><span class="action-text">{{ i.name|safe }}</span><span class="icon"><i
-                                            class="far fa-heart"></i></span></a> <a class="popup-content"
-                                    href="#QuickView"><span class="action-text">Quick View</span><span class="icon"><i
-                                            class="far fa-eye"></i></span></a></div>
-                            <div class="th-menu_discount"><span class="sale">{{ i.discount|safe }} OFF</span></div>
-                        </div>
-                        <div class="th-menu-content">
-                            <h3 class="th-menu_title"><a href="shop-details.html">{{ i.name|safe }}</a></h3>
-                            <p class="th-menu_desc">{{ i.description|safe }}</p><span
-                                class="th-menu_price">{{ i.price|safe }}</span>
-                        </div>
-                        <div class="fire"><img src="{% static 'assets/img/update_2/shape/fire.png' %}" alt="shape"></div>
-                    </div>
-                </div>
-{% endfor %}
+    <div class="shape-mockup jump" data-top="40%" data-left="0%"><img src="{{ i.tImage.url }}" alt="shape"></div>
+    <div class="shape-mockup moving" data-top="17%" data-right="7%"><img src="{{ i.bImage.url }}" alt="shape"></div>
+    <div class="container">
+        <div class="row justify-content-md-between justify-content-center align-items-center">
+            <div class="title-area mb-40 text-center wow fadeInUp"><span class="sub-title mt-n1">{{ i.title|safe }}</span>
+                <h2 class="sec-title">{{ i.name|safe }}</h2>
             </div>
         </div>
-    </section>
+{% endfor %}
+        <div class="row th-carousel productSlide" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2"
+            data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
+{% for i in products %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="th-menu">
+                    <div class="th-menu_img"><img class="spin" src="{{ i.image.url }}" alt="menu Image"
+                            style="width:150px; height:auto;">
+                        <div class="product-action"><a href="{% url 'cartPage' %}"><span class="action-text">Add To
+                                    cart</span><span class="icon"><i class="far fa-cart-shopping"></i></span></a> <a
+                                href="{% url 'wishListPage' %}"><span class="action-text">{{ i.title|safe }}</span><span
+                                    class="icon"><i class="far fa-heart"></i></span></a> <a class="popup-content"
+                                href="#QuickView"><span class="action-text">Quick View</span><span class="icon"><i
+                                        class="far fa-eye"></i></span></a></div>
+                        <div class="th-menu_discount"><span class="sale">{{ i.discountPercentage|safe }}% OFF</span></div>
+                    </div>
+                    <div class="th-menu-content">
+                        <h3 class="th-menu_title"><a href="{% url 'shopDetailPage' i.id %}">{{ i.title|safe }}</a></h3>
+                        <p class="th-menu_desc">{{ i.text|safe }}</p><span class="th-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
+                    </div>
+                    <div class="fire"><img src="{% static 'assets/img/update_2/shape/fire.png' %}" alt="shape"></div>
+                </div>
+            </div>
+{% endfor %}
+        </div>
+    </div>
+</section>
 
 
 <!-- About -->
 <div class="about-sec overflow-hidden space-bottom mt-5">
-{% for i in About %}
-        <div class="shape-mockup moving d-none d-sm-block" data-top="3%" data-right="3%"><img
-                src="{{ i.topImage.url }}" alt="shape"></div>
-        <div class="shape-mockup jump d-none d-lg-block" data-top="33%" data-left="5%"><img
-                src="{{ i.sideImage1.url }}" alt="shape"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="img-box8">
-                        <div class="img1"><img src="{{ i.image.url }}" alt="About"></div>
-                        <div class="img2 jump"><img src="{{ i.sideImage2.url }}" alt="About"></div>
-                        <div class="about-box">
-                            <div class="about-box_number"><span class="counter-number">{{ i.year|safe }}</span>+</div>
-                            <p class="about-box_text">{{ i.experience|safe }}<br>{{ i.company|safe }}</p>
-                            <div class="about-box_avaters"><img src="{{ i.clientImage.url }}"
-                                    alt="About"></div>
-                        </div>
+    {% for i in About %}
+    <div class="shape-mockup moving d-none d-sm-block" data-top="3%" data-right="3%"><img src="{{ i.topImage.url }}"
+            alt="shape"></div>
+    <div class="shape-mockup jump d-none d-lg-block" data-top="33%" data-left="5%"><img src="{{ i.sideImage1.url }}"
+            alt="shape"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="img-box8">
+                    <div class="img1"><img src="{{ i.image.url }}" alt="About"></div>
+                    <div class="img2 jump"><img src="{{ i.sideImage2.url }}" alt="About"></div>
+                    <div class="about-box">
+                        <div class="about-box_number"><span class="counter-number">{{ i.year|safe }}</span>+</div>
+                        <p class="about-box_text">{{ i.experience|safe }}<br>{{ i.company|safe }}</p>
+                        <div class="about-box_avaters"><img src="{{ i.clientImage.url }}" alt="About"></div>
                     </div>
                 </div>
-                <div class="col-xl-6 mt-40 mt-xl-0">
-                    <div class="ps-xxl-5 ms-xl-2">
-                        <div class="title-area mb-30 text-center text-xl-start"><span class="sub-title">
-                                {{ i.title|safe }}</span>
-                            <h2 class="sec-title">{{ i.name|safe }}</h2>
+            </div>
+            <div class="col-xl-6 mt-40 mt-xl-0">
+                <div class="ps-xxl-5 ms-xl-2">
+                    <div class="title-area mb-30 text-center text-xl-start"><span class="sub-title">
+                            {{ i.title|safe }}</span>
+                        <h2 class="sec-title">{{ i.name|safe }}</h2>
+                    </div>
+                    <p class="mt-n2 mb-25 text-center text-xl-start">{{ i.description|safe }}</p>
+                    <div class="about-award">
+                        <div class="about-award_icon"><img src="{% static 'assets/img/update_2/icon/about-award.svg' %}"
+                                alt="Icon"></div>
+                        <div class="media-body">
+                            <h3 class="about-award_title">{{ i.tag|safe }}</h3>
+                            <p class="about-award_text">{{ i.into|safe }}</p>
                         </div>
-                        <p class="mt-n2 mb-25 text-center text-xl-start">{{ i.description|safe }}</p>
-                        <div class="about-award">
-                            <div class="about-award_icon"><img src="{% static 'assets/img/update_2/icon/about-award.svg' %}"
-                                    alt="Icon"></div>
+                    </div>
+                    {% endfor %}
+                    <div class="checklist style4 one-column mb-25">
+                        <ul>
+                            {% for g in AboutItem %}
+                            <li>{{ g.text|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% for i in About %}
+                    <div class="btn-group mt-35 justify-content-center justify-content-xl-start"><a
+                            href="{% url 'aboutPage' %}" class="th-btn rounded-2">{{ i.thm_text|safe }}<i
+                                class="fa-solid fa-arrow-right ms-2"></i></a>
+                        <div class="about-profile">
+                            <div class="about-avater"><img src="{{ i.pImage.url }}" alt="about"></div>
                             <div class="media-body">
-                                <h3 class="about-award_title">{{ i.tag|safe }}</h3>
-                                <p class="about-award_text">{{ i.into|safe }}</p>
-                            </div>
-                        </div>
-{% endfor %}
-                        <div class="checklist style4 one-column mb-25">
-                            <ul>
-{% for g in AboutItem %}
-                                <li>{{ g.text|safe }}</li>
-{% endfor %}
-                            </ul>
-                        </div>
-{% for i in About %}
-                        <div class="btn-group mt-35 justify-content-center justify-content-xl-start"><a
-                                href="{% url 'aboutPage' %}" class="th-btn rounded-2">{{ i.thm_text|safe }}<i
-                                    class="fa-solid fa-arrow-right ms-2"></i></a>
-                            <div class="about-profile">
-                                <div class="about-avater"><img src="{{ i.pImage.url }}"
-                                        alt="about"></div>
-                                <div class="media-body">
-                                    <h6 class="title">{{ i.pName|safe }}</h6><span class="desig">{{ i.position|safe }}</span>
-                                </div>
+                                <h6 class="title">{{ i.pName|safe }}</h6><span class="desig">{{ i.position|safe }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-{% endfor %}
     </div>
+    {% endfor %}
+</div>
 
 
 <!-- Discount Offer -->
 {% for i in Promotion %}
 <section class="space position-relative" data-bg-src="{{ i.image.url }}">
-        <div class="container">
-            <div class="row gy-30">
-                <div class="col-md-1">
-                    <ul class="discount_counter1 counter-list" data-offer-date="09/09/2023">
-                        <li>
-                            <div class="day count-number">{{ i.day|safe }}</div><span class="count-name">Days</span>
-                        </li>
-                        <li>
-                            <div class="hour count-number">{{ i.hour|safe }}</div><span class="count-name">Hours</span>
-                        </li>
-                        <li>
-                            <div class="minute count-number">{{ i.min|safe }}</div><span class="count-name">Min</span>
-                        </li>
-                        <li>
-                            <div class="seconds count-number">{{ i.sec|safe }}</div><span class="count-name">Sec</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xl-6 col-lg-7 col-md-9 ps-md-5 offset-xl-1 space-bottom">
-                    <h2 class="text-white fw-semibold mt-n2">{{ i.title|safe }}</h2>
-                    <p class="text-white mb-4">{{ i.description|safe }}</p>
-                    <div class="btn-wrap"><a href="{% url 'shopPage' %}" class="th-btn style6">Order now</a>
-                        <h5 class="price_style1">{{ i.price|safe }} - <del>{{ i.discound|safe }}</del></h5>
-                    </div>
+    <div class="container">
+        <div class="row gy-30">
+            <div class="col-md-1">
+                <ul class="discount_counter1 counter-list" data-offer-date="09/09/2023">
+                    <li>
+                        <div class="day count-number">{{ i.day|safe }}</div><span class="count-name">Days</span>
+                    </li>
+                    <li>
+                        <div class="hour count-number">{{ i.hour|safe }}</div><span class="count-name">Hours</span>
+                    </li>
+                    <li>
+                        <div class="minute count-number">{{ i.min|safe }}</div><span class="count-name">Min</span>
+                    </li>
+                    <li>
+                        <div class="seconds count-number">{{ i.sec|safe }}</div><span class="count-name">Sec</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-9 ps-md-5 offset-xl-1 space-bottom">
+                <h2 class="text-white fw-semibold mt-n2">{{ i.title|safe }}</h2>
+                <p class="text-white mb-4">{{ i.description|safe }}</p>
+                <div class="btn-wrap"><a href="{% url 'shopPage' %}" class="th-btn style6">Order now</a>
+                    <h5 class="price_style1">{{ i.price|safe }} - <del>{{ i.discount|safe }}</del></h5>
                 </div>
             </div>
-            <div class="discount_style2" data-bg-src="{% static 'assets/img/shape/discount_bg_2.svg' %}">
-                <p class="small-text1">GET UP TO</p>
-                <h3 class="percentage">{{ i.promotion|safe }}</h3>
-                <p class="small-text2">OFF NOW</p>
-            </div>
-{% endfor %}
         </div>
-    </section>
+        <div class="discount_style2" data-bg-src="{% static 'assets/img/shape/discount_bg_2.svg' %}">
+            <p class="small-text1">GET UP TO</p>
+            <h3 class="percentage">{{ i.promotion|safe }}</h3>
+            <p class="small-text2">OFF NOW</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 
 <!-- Our Strength -->
 <section class="space z-index-common">
-{% for i in Strength %}
-        <div class="bg-img shape_style1" data-bg-src=""></div>
-        <div class="container z-index-common">
-            <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
-                <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
-                <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
-            </div>
-{% endfor %}
-            <div class="feature-grid-wrap">
-{% for i in StrengthItem %}
-                <div class="feature-grid">
-                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_1.svg' %}" alt="Food"></div>
-                    <div>
-                        <h3 class="feature-grid_title box-title">{{ i.name|safe }}</h3>
-                        <p class="feature-grid_text">{{ i.description|safe }}</p>
-                    </div>
-                </div>
-                <div class="feature-grid">
-                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_2.svg' %}" alt="Food"></div>
-                    <div>
-                        <h3 class="feature-grid_title box-title">{{ i.name1|safe }}</h3>
-                        <p class="feature-grid_text">{{ i.description1|safe }}</p>
-                    </div>
-                </div>
-                <div class="feature-grid">
-                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_3.svg' %}" alt="Food"></div>
-                    <div>
-                        <h3 class="feature-grid_title box-title">{{ i.name2|safe }}</h3>
-                        <p class="feature-grid_text">{{ i.description2|safe }}</p>
-                    </div>
-                </div>
-{% endfor %}
-            </div>
+    {% for i in Strength %}
+    <div class="bg-img shape_style1" data-bg-src=""></div>
+    <div class="container z-index-common">
+        <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
+            <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
+            <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
         </div>
-    </section>
-
-
-<div class="space counter-sec1" data-bg-src="{% static 'assets/img/bg/counter_bg_1.jpg' %}" data-overlay="title" data-opacity="9">
-        <div class="container z-index-common">
-            <div class="row gy-40 justify-content-between">
-{% for i in Rate %}
-                <div class="col-sm-6 col-xl-auto">
-                    <div class="counter-card">
-                        <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_1.svg' %}" alt="icon"></div>
-                        <div class="media-body">
-                            <h2 class="counter-card_number"><span class="counter-number">{{ i.rate|safe }}</span>{{ i.rate0|safe }}<span
-                                    class="plus">+</span></h2>
-                            <p class="counter-card_text">{{ i.name|safe }}</p>
-                        </div>
-                    </div>
+        {% endfor %}
+        <div class="feature-grid-wrap">
+            {% for i in StrengthItem %}
+            <div class="feature-grid">
+                <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_1.svg' %}" alt="Food">
                 </div>
-                <div class="col-sm-6 col-xl-auto">
-                    <div class="counter-card">
-                        <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_2.svg' %}" alt="icon"></div>
-                        <div class="media-body">
-                            <h2 class="counter-card_number"><span class="counter-number">{{ i.rate1|safe }}</span>{{ i.rate11|safe }}<span
-                                    class="plus">+</span></h2>
-                            <p class="counter-card_text">{{ i.name1|safe }}</p>
-                        </div>
-                    </div>
+                <div>
+                    <h3 class="feature-grid_title box-title">{{ i.name|safe }}</h3>
+                    <p class="feature-grid_text">{{ i.description|safe }}</p>
                 </div>
-                <div class="col-sm-6 col-xl-auto">
-                    <div class="counter-card">
-                        <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_3.svg' %}" alt="icon"></div>
-                        <div class="media-body">
-                            <h2 class="counter-card_number"><span class="counter-number">{{ i.rate2|safe }}</span>{{ i.rate22|safe }}<span
-                                    class="plus">+</span></h2>
-                            <p class="counter-card_text">{{ i.name2|safe }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-auto">
-                    <div class="counter-card">
-                        <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_4.svg' %}" alt="icon"></div>
-                        <div class="media-body">
-                            <h2 class="counter-card_number"><span class="counter-number">{{ i.rate3|safe }}</span>{{ i.rate33|safe }}<span
-                                    class="plus">+</span></h2>
-                            <p class="counter-card_text">{{ i.name3|safe }}</p>
-                        </div>
-                    </div>
-                </div>
-{% endfor %}
             </div>
+            <div class="feature-grid">
+                <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_2.svg' %}" alt="Food">
+                </div>
+                <div>
+                    <h3 class="feature-grid_title box-title">{{ i.name1|safe }}</h3>
+                    <p class="feature-grid_text">{{ i.description1|safe }}</p>
+                </div>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_3.svg' %}" alt="Food">
+                </div>
+                <div>
+                    <h3 class="feature-grid_title box-title">{{ i.name2|safe }}</h3>
+                    <p class="feature-grid_text">{{ i.description2|safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
+</section>
+
+
+<div class="space counter-sec1" data-bg-src="{% static 'assets/img/bg/counter_bg_1.jpg' %}" data-overlay="title"
+    data-opacity="9">
+    <div class="container z-index-common">
+        <div class="row gy-40 justify-content-between">
+            {% for i in Rate %}
+            <div class="col-sm-6 col-xl-auto">
+                <div class="counter-card">
+                    <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_1.svg' %}" alt="icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="counter-card_number"><span class="counter-number">{{ i.rate|safe }}</span>
+                            {{ i.rate0|safe }}<span class="plus">+</span></h2>
+                        <p class="counter-card_text">{{ i.name|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-auto">
+                <div class="counter-card">
+                    <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_2.svg' %}" alt="icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="counter-card_number"><span class="counter-number">{{ i.rate1|safe }}</span>
+                            {{ i.rate11|safe }}<span class="plus">+</span></h2>
+                        <p class="counter-card_text">{{ i.name1|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-auto">
+                <div class="counter-card">
+                    <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_3.svg' %}" alt="icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="counter-card_number"><span class="counter-number">{{ i.rate2|safe }}</span>
+                            {{ i.rate22|safe }}<span class="plus">+</span></h2>
+                        <p class="counter-card_text">{{ i.name2|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-auto">
+                <div class="counter-card">
+                    <div class="counter-card_icon"><img src="{% static 'assets/img/icon/counter_1_4.svg' %}" alt="icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="counter-card_number"><span class="counter-number">{{ i.rate3|safe }}</span>
+                            {{ i.rate33|safe }}<span class="plus">+</span></h2>
+                        <p class="counter-card_text">{{ i.name3|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 <!-- Best Food Menu  -->
 <section class="space">
-        <div class="shape-mockup jump d-none d-lg-block" data-top="10%" data-left="5%"><img
-                src="{% static 'assets/img/update_2/shape/capsicum_1.png' %}" alt="shape"></div>
-        <div class="shape-mockup jump-reverse d-none d-xl-block" data-top="30%" data-right="0%"><img
-                src="{% static 'assets/img/update_2/shape/tomato_5.png' %}" alt="shape"></div>
-        <div class="shape-mockup jump-reverse d-none d-xl-block" data-bottom="10%" data-left="4%"><img
-                src="{% static 'assets/img/update_2/shape/red_chili.png' %}" alt="shape"></div>
-        <div class="shape-mockup jump d-none d-xl-block" data-bottom="-5%" data-right="1%"><img
-                src="{% static 'assets/img/update_2/shape/red_chili_2.png' %}" alt="shape"></div>
-        <div class="container">
+    <div class="shape-mockup jump d-none d-lg-block" data-top="10%" data-left="5%"><img
+            src="{% static 'assets/img/update_2/shape/capsicum_1.png' %}" alt="shape"></div>
+    <div class="shape-mockup jump-reverse d-none d-xl-block" data-top="30%" data-right="0%"><img
+            src="{% static 'assets/img/update_2/shape/tomato_5.png' %}" alt="shape"></div>
+    <div class="shape-mockup jump-reverse d-none d-xl-block" data-bottom="10%" data-left="4%"><img
+            src="{% static 'assets/img/update_2/shape/red_chili.png' %}" alt="shape"></div>
+    <div class="shape-mockup jump d-none d-xl-block" data-bottom="-5%" data-right="1%"><img
+            src="{% static 'assets/img/update_2/shape/red_chili_2.png' %}" alt="shape"></div>
+    <div class="container">
 {% for i in BestMenu %}
-            <div class="title-area text-center"><span class="sub-title">{{ i.title|safe }}</span>
-                <h2 class="sec-title">{{ i.name|safe }}</h2>
+        <div class="title-area text-center"><span class="sub-title">{{ i.title|safe }}</span>
+            <h2 class="sec-title">{{ i.name|safe }}</h2>
+        </div>
+{% endfor %}
+        <div class="nav nav-tabs menu-tabs" id="nav-tab" role="tablist">
+            {% for i in Category %}
+            <button class="nav-link" id="{{ i.num|safe }}-tab" data-bs-toggle="tab" data-bs-target="#{{ i.num|safe }}"
+                type="button">
+                <img src="{{ i.image.url }}" alt="">{{ i.name|safe }}
+            </button>
+            {% endfor %}
+        </div>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade active show" id="nav-step1" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products1 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            </div>
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
+                                </div>
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
+                        </div>
+                        {% endfor %}
+                </div>
             </div>
-            <div class="nav nav-tabs menu-tabs" id="nav-tab" role="tablist"><button class="nav-link active"
-                    id="nav-step1-tab" data-bs-toggle="tab" data-bs-target="#nav-step1" type="button"><img
-                        src="{{ i.Image1.url }}" alt="">{{ i.menu1|safe }}</button> <button class="nav-link"
-                    id="nav-step2-tab" data-bs-toggle="tab" data-bs-target="#nav-step2" type="button"><img
-                        src="{{ i.Image2.url }}" alt="">{{ i.menu2|safe }}</button> <button class="nav-link"
-                    id="nav-step3-tab" data-bs-toggle="tab" data-bs-target="#nav-step3" type="button"><img
-                        src="{{ i.Image3.url }}" alt="">{{ i.menu3|safe }}</button> <button class="nav-link"
-                    id="nav-step4-tab" data-bs-toggle="tab" data-bs-target="#nav-step4" type="button"><img
-                        src="{{ i.Image4.url }}" alt="">{{ i.menu4|safe }}</button> <button class="nav-link"
-                    id="nav-step5-tab" data-bs-toggle="tab" data-bs-target="#nav-step5" type="button"><img
-                        src="{{ i.Image5.url }}" alt="">{{ i.menu5|safe }}</button></div>
-{% endfor %}
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade active show" id="nav-step1" role="tabpanel">
-                    <div class="menu-tab-area">
-                        <div class="food-menu-wrap">
-{% for i in Category2 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
-                                </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
+            <div class="tab-pane fade" id="nav-step2" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products2 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
                             </div>
-{% endfor %}
-                        </div>
-                        <div class="food-menu-wrap">
-{% for i in Category22 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
                                 </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
-                            </div>
-{% endfor %}
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
                         </div>
-                    </div>
+                        {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="nav-step2" role="tabpanel">
-                    <div class="menu-tab-area">
-                        <div class="food-menu-wrap">
-{% for i in Category1 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
-                                </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
+            </div>
+            <div class="tab-pane fade" id="nav-step3" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products3 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
                             </div>
-{% endfor %}
-                        </div>
-                        <div class="food-menu-wrap">
-{% for i in Category11 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
                                 </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
-                            </div>
-{% endfor %}
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
                         </div>
-                    </div>
+                        {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="nav-step3" role="tabpanel">
-                    <div class="menu-tab-area">
-                        <div class="food-menu-wrap">
-{% for i in Category3 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
-                                </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
+            </div>
+            <div class="tab-pane fade" id="nav-step6" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products4 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
                             </div>
-{% endfor %}
-                        </div>
-                        <div class="food-menu-wrap">
-{% for i in Category33 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
                                 </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
-                            </div>
-{% endfor %}
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
                         </div>
-                    </div>
+                        {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="nav-step4" role="tabpanel">
-                    <div class="menu-tab-area">
-                        <div class="food-menu-wrap">
-{% for i in Category5 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
-                                </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
+            </div>
+            <div class="tab-pane fade" id="nav-step4" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products5 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
                             </div>
-{% endfor %}
-                        </div>
-                        <div class="food-menu-wrap">
-{% for i in Category55 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
                                 </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
-                            </div>
-{% endfor %}
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
                         </div>
-                    </div>
+                        {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="nav-step5" role="tabpanel">
-                    <div class="menu-tab-area">
-                        <div class="food-menu-wrap">
-{% for i in Category6 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
-                                </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
+            </div>
+            <div class="tab-pane fade" id="nav-step5" role="tabpanel">
+                <div class="menu-tab-area">
+                        {% for i in products6 %}
+                        <div class="food-menu">
+                            <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
                             </div>
-{% endfor %}
-                        </div>
-                        <div class="food-menu-wrap">
-{% for i in Category66 %}
-                            <div class="food-menu">
-                                <div class="food-menu_img"><img src="{{ i.image.url }}" alt="Menu">
+                            <div class="food-menu_content">
+                                <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.title|safe }}</a></h3>
+                                <p class="food-menu_desc">{{ i.text|safe }}</p>
+                                <div class="product-rating">
+                                    <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5">
+                                        <span style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong>
+                                            out of
+                                            5</span>
+                                    </div>{{ i.review|safe }} Reviews
                                 </div>
-                                <div class="food-menu_content">
-                                    <h3 class="food-menu_title"><a href="{% url 'shopPage' %}">{{ i.name|safe }}</a></h3>
-                                    <p class="food-menu_desc">{{ i.description|safe }}</p>
-                                    <div class="product-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated {{ i.rate|safe }} out of 5"><span
-                                                style="width:75%">Rated <strong class="rating">{{ i.rate|safe }}</strong> out of
-                                                5</span></div>{{ i.review|safe }} Reviews
-                                    </div>
-                                </div><span class="food-menu_price">{{ i.price|safe }}</span>
-                            </div>
-{% endfor %}
+                            </div><span class="food-menu_price">${{ i.disPrice|intcomma }} <del>${{ i.price|intcomma }}</del></span>
                         </div>
-                    </div>
+                        {% endfor %}
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 <!-- Download APP -->
-    <div class="">
-        <div class="container">
-{% for i in DownloadAPP %}
-            <div class="download-area bg-smoke2" data-bg-src="{{ i.image.url }}">
-                <div class="row">
-                    <div class="col-xl-6 col-xxl-5 col-lg-7 col-md-9">
-                        <h2 class="sec-title mb-30">{{ i.name|safe }}</h2>
-                        <div class="download-btn-wrap"><a target="_blank" href="https://play.google.com/"
-                                class="download-btn rounded-2"><i class="fa-brands fa-google-play"></i>
-                                <div class="text-group"><span class="small-text">Download From</span>
-                                    <h6 class="big-text">Google Play</h6>
-                                </div>
-                            </a><a target="_blank" href="https://www.apple.com/store"
-                                class="download-btn rounded-2 bg-theme2"><i class="fa-brands fa-apple"></i>
-                                <div class="text-group"><span class="small-text">Download From</span>
-                                    <h6 class="big-text">App Store</h6>
-                                </div>
-                            </a></div>
-                    </div>
+<div class="">
+    <div class="container">
+        {% for i in DownloadAPP %}
+        <div class="download-area bg-smoke2" data-bg-src="{{ i.image.url }}">
+            <div class="row">
+                <div class="col-xl-6 col-xxl-5 col-lg-7 col-md-9">
+                    <h2 class="sec-title mb-30">{{ i.name|safe }}</h2>
+                    <div class="download-btn-wrap"><a target="_blank" href="https://play.google.com/"
+                            class="download-btn rounded-2"><i class="fa-brands fa-google-play"></i>
+                            <div class="text-group"><span class="small-text">Download From</span>
+                                <h6 class="big-text">Google Play</h6>
+                            </div>
+                        </a><a target="_blank" href="https://www.apple.com/store"
+                            class="download-btn rounded-2 bg-theme2"><i class="fa-brands fa-apple"></i>
+                            <div class="text-group"><span class="small-text">Download From</span>
+                                <h6 class="big-text">App Store</h6>
+                            </div>
+                        </a></div>
                 </div>
             </div>
-{% endfor %}
         </div>
+        {% endfor %}
     </div>
+</div>
 
 
 <!-- Chef -->
 <section class="space">
-{% for i in Chef %}
-        <div class="shape-mockup jump d-none d-lg-block" data-top="10%" data-left="5%"><img
-                src="{{ i.tImage.url }}" alt="shape"></div>
-        <div class="shape-mockup jump d-none d-lg-block" data-bottom="-3%" data-right="3%"><img
-                src="{{ i.bImage.url }}" alt="shape"></div>
-        <div class="container">
-            <div class="title-area text-center"><span class="sub-title">{{ i.title|safe }}</span>
-                <h2 class="sec-title">{{ i.name|safe }}</h2>
-            </div>
-{% endfor %}
-            <div class="row th-carousel" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2"
-                data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
-{% for i in ChefItem %}
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="th-team team-box">
-                        <div class="team-img"><img src="{{ i.image.url }}" alt="Team"></div>
-                        <div class="team-content-wrap"><span class="team-desig">{{ i.position|safe }}</span>
-                            <div class="team-content">
-                                <h3 class="team-title"><a href="team-details.html">{{ i.name|safe }}</a></h3>
-                                <div class="th-social"><a target="_blank" href="https://facebook.com/"><i
-                                            class="fab fa-facebook-f"></i></a> <a target="_blank"
-                                        href="https://twitter.com/"><i class="fab fa-twitter"></i></a> <a
-                                        target="_blank" href="https://instagram.com/"><i
-                                            class="fab fa-instagram"></i></a> <a target="_blank"
-                                        href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a></div>
+    {% for i in Chef %}
+    <div class="shape-mockup jump d-none d-lg-block" data-top="10%" data-left="5%"><img src="{{ i.tImage.url }}"
+            alt="shape"></div>
+    <div class="shape-mockup jump d-none d-lg-block" data-bottom="-3%" data-right="3%"><img src="{{ i.bImage.url }}"
+            alt="shape"></div>
+    <div class="container">
+        <div class="title-area text-center"><span class="sub-title">{{ i.title|safe }}</span>
+            <h2 class="sec-title">{{ i.name|safe }}</h2>
+        </div>
+        {% endfor %}
+        <div class="row th-carousel" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2"
+            data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
+            {% for i in ChefItem %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="th-team team-box">
+                    <div class="team-img"><img src="{{ i.image.url }}" alt="Team"></div>
+                    <div class="team-content-wrap"><span class="team-desig">{{ i.position|safe }}</span>
+                        <div class="team-content">
+                            <h3 class="team-title"><a href="team-details.html">{{ i.name|safe }}</a></h3>
+                            <div class="th-social"><a target="_blank" href="https://facebook.com/"><i
+                                        class="fab fa-facebook-f"></i></a> <a target="_blank"
+                                    href="https://twitter.com/"><i class="fab fa-twitter"></i></a> <a target="_blank"
+                                    href="https://instagram.com/"><i class="fab fa-instagram"></i></a> <a
+                                    target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-{% endfor %}
             </div>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 
 
 <!-- Book Table -->
 {% for i in BookTable %}
 <section class="space bg-title position-relative" data-bg-src="{{ i.bImage.url }}">
-        <div class="container th-container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-xl-auto">
-                    <div class="available-table">
-                        <h3 class="available-table_title">{{ i.title|safe }}</h3>
-{% for i in DateTime %}
-                        <p class="available-table_info"><span>{{ i.date|safe }}</span><span>{{ i.time|safe }}</span></p>
-{% endfor %}                       
-                        <h3 class="available-table_title style2">{{ i.tag|safe }}</h3><a href="tel:'{{ i.phone|safe }}'"
-                            class="available-table_call">{{ i.phone|safe }}</a>
-                    </div>
-                </div>
-                <div class="col-xl-auto">
-                    <h2 class="sec-title text-center text-white">{{ i.title1|safe }} <span
-                            class="font-style text-theme">{{ i.tag1|safe }}</span></h2>
-                    <form action="https://themeholy.com/html/pizzan/demo/mail.php" method="POST"
-                        class="booking-form style2">
-                        <div class="row">
-                            <div class="form-group col-lg-4"><input type="text" class="form-control date-pick"
-                                    id="date-pick" name="date" placeholder="Select Date"> <i
-                                    class="fal fa-calendar-days"></i></div>
-                            <div class="form-group col-lg-4"><input type="text" class="form-control time-pick"
-                                    id="time-pick" name="time" placeholder="Select-time"> <i class="fal fa-clock"></i>
-                            </div>
-                            <div class="form-group col-lg-4"><input type="number" class="form-control" name="guest"
-                                    id="guest" placeholder="Total Guests"> <i class="fal fa-user-group"></i></div>
-                            <div class="form-group col-12"><textarea name="message" id="message" cols="30" rows="3"
-                                    class="form-control" placeholder="Write Message"></textarea> <i
-                                    class="fal fa-comment"></i></div>
-                            <div class="form-btn col-12 text-center"><button class="th-btn style3">{{ i.thm_text|safe }}
-                                    </button></div>
-                        </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
+    <div class="container th-container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-auto">
+                <div class="available-table">
+                    <h3 class="available-table_title">{{ i.title|safe }}</h3>
+                    {% for i in DateTime %}
+                    <p class="available-table_info"><span>{{ i.date|safe }}</span><span>{{ i.time|safe }}</span></p>
+                    {% endfor %}
+                    <h3 class="available-table_title style2">{{ i.tag|safe }}</h3><a href="tel:'{{ i.phone|safe }}'"
+                        class="available-table_call">{{ i.phone|safe }}</a>
                 </div>
             </div>
-            <div class="available-table-bg" data-bg-src="{{ i.lImage.url }}"></div>
+            <div class="col-xl-auto">
+                <h2 class="sec-title text-center text-white">{{ i.title1|safe }} <span class="font-style text-theme">
+                    {{ i.tag1|safe }}</span></h2>
+                <form action="https://themeholy.com/html/pizzan/demo/mail.php" method="POST"
+                    class="booking-form style2">
+                    <div class="row">
+                        <div class="form-group col-lg-4"><input type="text" class="form-control date-pick"
+                                id="date-pick" name="date" placeholder="Select Date"> <i
+                                class="fal fa-calendar-days"></i></div>
+                        <div class="form-group col-lg-4"><input type="text" class="form-control time-pick"
+                                id="time-pick" name="time" placeholder="Select-time"> <i class="fal fa-clock"></i>
+                        </div>
+                        <div class="form-group col-lg-4"><input type="number" class="form-control" name="guest"
+                                id="guest" placeholder="Total Guests"> <i class="fal fa-user-group"></i></div>
+                        <div class="form-group col-12"><textarea name="message" id="message" cols="30" rows="3"
+                                class="form-control" placeholder="Write Message"></textarea> <i
+                                class="fal fa-comment"></i></div>
+                        <div class="form-btn col-12 text-center"><button class="th-btn style3">{{ i.thm_text|safe }}
+                            </button></div>
+                    </div>
+                    <p class="form-messages mb-0 mt-3"></p>
+                </form>
+            </div>
         </div>
-    </section>
+        <div class="available-table-bg" data-bg-src="{{ i.lImage.url }}"></div>
+    </div>
+</section>
 {% endfor %}
 
 
 <!-- Feedback -->
 <section class="space bg-smoke2">
-{% for i in Feedback %}
-        <div class="container">
-            <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
-                <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
-                <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
-            </div>
-            <div class="row slider-shadow th-carousel number-dots" data-slide-show="3" data-lg-slide-show="2"
-                data-md-slide-show="1" data-dots="true" data-xl-dots="true" data-ml-dots="true" data-lg-dots="true">
-{% for i in FeedbackItem %}
-                <div class="col-xl-4 col-lg-6">
-                    <div class="testi-box">
-                        <div class="testi-box_icon"><img src="{% static 'assets/img/icon/quote_left.svg' %}" alt="quote"></div>
-                        <p class="testi-box_text">{{ i.text|safe }}</p>
-                        <div class="testi-box_review"><i class="fa-sharp fa-solid fa-star"></i><i
-                                class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i><i
-                                class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i></div>
-                        <div class="testi-box_profile">
-                            <div class="testi-box_avater"><img src="{{ i.profileImage.url }}" alt="Avater">
-                            </div>
-                            <div class="media-body">
-                                <h3 class="testi-box_name">{{ i.name|safe }}</h3><span class="testi-box_desig">{{ i.country|safe }}</span>
-                            </div>
+    {% for i in Feedback %}
+    <div class="container">
+        <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
+            <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
+            <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
+        </div>
+        <div class="row slider-shadow th-carousel number-dots" data-slide-show="3" data-lg-slide-show="2"
+            data-md-slide-show="1" data-dots="true" data-xl-dots="true" data-ml-dots="true" data-lg-dots="true">
+            {% for i in FeedbackItem %}
+            <div class="col-xl-4 col-lg-6">
+                <div class="testi-box">
+                    <div class="testi-box_icon"><img src="{% static 'assets/img/icon/quote_left.svg' %}" alt="quote">
+                    </div>
+                    <p class="testi-box_text">{{ i.text|safe }}</p>
+                    <div class="testi-box_review"><i class="fa-sharp fa-solid fa-star"></i><i
+                            class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i><i
+                            class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i></div>
+                    <div class="testi-box_profile">
+                        <div class="testi-box_avater"><img src="{{ i.profileImage.url }}" alt="Avater">
                         </div>
-                        <div class="testi-box_img"><img src="{{ i.image.url }}" alt="Reveiw Image">
+                        <div class="media-body">
+                            <h3 class="testi-box_name">{{ i.name|safe }}</h3><span class="testi-box_desig">
+                                {{ i.country|safe }}</span>
                         </div>
                     </div>
+                    <div class="testi-box_img"><img src="{{ i.image.url }}" alt="Reveiw Image">
+                    </div>
                 </div>
-{% endfor %}
             </div>
+            {% endfor %}
         </div>
-        <div class="shape-mockup leaf jump-reverse" data-top="0%" data-left="0"><img src="{{ i.tImage.url }}"
-                alt="shape"></div>
-        <div class="shape-mockup leaf jump" data-bottom="0%" data-right="0"><img src="{{ i.bImage.url }}"
-                alt="shape"></div>
-{% endfor %}
-    </section>
+    </div>
+    <div class="shape-mockup leaf jump-reverse" data-top="0%" data-left="0"><img src="{{ i.tImage.url }}" alt="shape">
+    </div>
+    <div class="shape-mockup leaf jump" data-bottom="0%" data-right="0"><img src="{{ i.bImage.url }}" alt="shape"></div>
+    {% endfor %}
+</section>
 
 
 <!-- Blogs -->
 {% for i in Blog %}
 <section class="space">
-        <div class="container">
-            <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
-                <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
-                <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
-            </div>
-            <div class="row slider-shadow th-carousel" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="2"
-                data-sm-slide-show="1" data-arrows="true">
-{% for i in BlogItem %}
-                <div class="col-md-6 col-xl-4">
-                    <div class="blog-card">
-                        <div class="blog-img"><img src="{{ i.image.url }}" alt="blog image"></div>
-                        <div class="blog-content">
-                            <div class="blog-meta"><a href="{% url 'newPage' %}"><i class="fa-regular fa-user"></i>{{ i.name|safe }}</a>
-                                <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date|safe }}</a> <a
-                                    href=""><i class="fa-regular fa-tag"></i>{{ i.food|safe }}</a></div>
-                            <h3 class="blog-title"><a href="{% url 'newDetailPage' %}">{{ i.description|safe }}</a></h3>
-                            <div class="blog-bottom"><a href="{% url 'newDetailPage' %}" class="line-btn">Read More</a> <a
-                                    href="{% url 'newDetailPage' %}" class="comment"><i class="fa-regular fa-comments"></i>3
-                                    Comments</a></div>
+    <div class="container">
+        <div class="title-area text-center"><span class="sub-title"> {{ i.title|safe }}</span>
+            <h2 class="sec-title">{{ i.name|safe }} <span class="font-style text-theme">{{ i.tag|safe }}</span></h2>
+            <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
+        </div>
+        <div class="row slider-shadow th-carousel" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="2"
+            data-sm-slide-show="1" data-arrows="true">
+            {% for i in BlogItem %}
+            <div class="col-md-6 col-xl-4">
+                <div class="blog-card">
+                    <div class="blog-img"><img src="{{ i.image.url }}" alt="blog image"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta"><a href="{% url 'newPage' %}"><i class="fa-regular fa-user"></i>{{
+                                i.name|safe }}</a>
+                            <a href=""><i class="fa-light fa-calendar-days"></i>{{ i.date|safe }}</a> <a href=""><i
+                                    class="fa-regular fa-tag"></i>{{ i.food|safe }}</a>
                         </div>
+                        <h3 class="blog-title"><a href="{% url 'newDetailPage' %}">{{ i.description|safe }}</a></h3>
+                        <div class="blog-bottom"><a href="{% url 'newDetailPage' %}" class="line-btn">Read More</a> <a
+                                href="{% url 'newDetailPage' %}" class="comment"><i class="fa-regular fa-comments"></i>3
+                                Comments</a></div>
                     </div>
                 </div>
-{% endfor %}
             </div>
+            {% endfor %}
         </div>
-        <div class="shape-mockup leaf jump-reverse d-none d-lg-block" data-top="12%" data-left="0"><img
-                src="{{ i.lImage.url }}" alt="shape"></div>
-        <div class="shape-mockup leaf jump d-none d-xl-block" data-bottom="12%" data-right="0"><img
-                src="{{ i.rImage.url }}" alt="shape"></div>
-    </section>
+    </div>
+    <div class="shape-mockup leaf jump-reverse d-none d-lg-block" data-top="12%" data-left="0"><img
+            src="{{ i.lImage.url }}" alt="shape"></div>
+    <div class="shape-mockup leaf jump d-none d-xl-block" data-bottom="12%" data-right="0"><img src="{{ i.rImage.url }}"
+            alt="shape"></div>
+</section>
 {% endfor %}
 
 {% endblock %}

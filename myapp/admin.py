@@ -2,23 +2,22 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImageModel
+    extra = 1
+
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [ProductImageInline]
+
 ##### HomePage ############
 
 admin.site.register(MainSliderModel)
 admin.site.register(BestMenuModel)
 admin.site.register(MenuModel)
-admin.site.register(Category1Model)
-admin.site.register(Category11Model)
-admin.site.register(Category2Model)
-admin.site.register(Category22Model)
-admin.site.register(Category3Model)
-admin.site.register(Category33Model)
-admin.site.register(Category4Model)
-admin.site.register(Category44Model)
-admin.site.register(Category5Model)
-admin.site.register(Category55Model)
-admin.site.register(Category6Model)
-admin.site.register(Category66Model)
+admin.site.register(Tag)
+admin.site.register(Product)
+admin.site.register(ProductDetail, ProductAdmin)
 admin.site.register(AboutModel)
 admin.site.register(AboutItemModel)
 admin.site.register(PromotionModel)
@@ -35,6 +34,7 @@ admin.site.register(FeedbackModel)
 admin.site.register(FeedbackItemModel)
 admin.site.register(BlogModel)
 admin.site.register(BlogItemModel)
+admin.site.register(CategoryModel)
 
 
 ######## MenuPage ##########
@@ -98,5 +98,29 @@ admin.site.register(AboutServiceModel)
 admin.site.register(AboutUsModel)
 admin.site.register(AboutUsItemModel)
 
+
+
+
+
+######## CartPage ##########
+
+admin.site.register(CartSliderModel)
+
+
+
+
+
+######## WishListPage ##########
+
+admin.site.register(WishListSliderModel)
+admin.site.register(Profile)
+
+
+
+
+
+######## CheckOutPage ##########
+
+admin.site.register(CheckOutSliderModel)
 
 
