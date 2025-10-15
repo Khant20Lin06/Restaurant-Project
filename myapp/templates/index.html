@@ -156,11 +156,31 @@
                 <div class="th-menu">
                     <div class="th-menu_img"><img class="spin" src="{{ i.image.url }}" alt="menu Image"
                             style="width:150px; height:auto;">
-                        <div class="product-action"><a href="{% url 'cartPage' %}"><span class="action-text">Add To
-                                    cart</span><span class="icon"><i class="far fa-cart-shopping"></i></span></a> <a
-                                href="{% url 'wishListPage' %}"><span class="action-text">{{ i.title|safe }}</span><span
-                                    class="icon"><i class="far fa-heart"></i></span></a> <a class="popup-content"
-                                href="#QuickView"><span class="action-text">Quick View</span><span class="icon"><i
+                        <div class="product-action">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_cart' i.id %}">
+                                <span class="action-text">Add To cart</span>
+                                <span class="icon"><i class="far fa-cart-shopping"></i></span>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'loginPage' %}">
+                                <span class="action-text">LoginRequire</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% endif %}
+                            
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_wishlist' i.id %}">
+                                <span class="action-text">Wishlist</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'loginPage' %}">
+                                <span class="action-text">LoginRequire</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% endif %}
+                            <a class="popup-content" href="#QuickView"><span class="action-text">Quick View</span><span class="icon"><i
                                         class="far fa-eye"></i></span></a></div>
                         <div class="th-menu_discount"><span class="sale">{{ i.discountPercentage|safe }}% OFF</span></div>
                     </div>
@@ -601,18 +621,23 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-xl-auto">
                 <div class="available-table">
-                    <h3 class="available-table_title">{{ i.title|safe }}</h3>
+                    <h3 class="available-table_title">{{ i.title1|safe }}</h3>
+{% endfor %}
                     {% for i in DateTime %}
                     <p class="available-table_info"><span>{{ i.date|safe }}</span><span>{{ i.time|safe }}</span></p>
                     {% endfor %}
-                    <h3 class="available-table_title style2">{{ i.tag|safe }}</h3><a href="tel:'{{ i.phone|safe }}'"
-                        class="available-table_call">{{ i.phone|safe }}</a>
+{% for i in BookTable %}
+                    <h3 class="available-table_title style2">{{ i.tag1|safe }}</h3>
+                    <a href="tel:'{{ i.phone|safe }}'" class="available-table_call">{{ i.phone|safe }}</a>
                 </div>
             </div>
             <div class="col-xl-auto">
-                <h2 class="sec-title text-center text-white">{{ i.title1|safe }} <span class="font-style text-theme">
-                    {{ i.tag1|safe }}</span></h2>
-                <form action="https://themeholy.com/html/pizzan/demo/mail.php" method="POST"
+                <h2 class="sec-title text-center text-white">{{ i.title|safe }} 
+                    <span class="font-style text-theme">
+                        {{ i.tag|safe }}
+                    </span>
+                </h2>
+                <form action="" method="POST"
                     class="booking-form style2">
                     <div class="row">
                         <div class="form-group col-lg-4"><input type="text" class="form-control date-pick"

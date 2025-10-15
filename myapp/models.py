@@ -59,10 +59,11 @@ class Product(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
     text = models.CharField(max_length=300, blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)           # Normal price
-    disPrice = models.IntegerField(blank=True, null=True)        # Discounted price
+    disPrice = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     discountPercentage = models.IntegerField(blank=True, null=True, editable=False)  # Auto calculated
     image = models.ImageField(upload_to="Product")
     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, null=True, blank=True)
+    in_stock = models.BooleanField(default=True)  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -667,47 +668,57 @@ class CheckOutSliderModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class Profile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Wishlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-
+    products = models.ManyToManyField(Product, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True) 
     def __str__(self):
         return f"{self.user.username}'s Wishlist"
-
-class Profile(models.Model):
-    ROLE_CHOICES = (
-        ('admin', 'Admin'),
-        ('staff', 'Staff'),
-        ('guest', 'Guest'),
-    )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='guest')
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
     
-
 class CustomUser(AbstractUser):
-    # custom fields
     ROLE_CHOICES = (
         ('admin', 'Admin'),
         ('staff', 'Staff'),
         ('guest', 'Guest'),
     )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='guest')
     phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
 
     groups = models.ManyToManyField(
         Group,
-        related_name='customuser_set',  # conflict မဖြစ်အောင် related_name ပြောင်း
+        related_name='customuser_set',
         blank=True
     )
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='customuser_permissions',  # conflict မဖြစ်အောင် related_name ပြောင်း
+        related_name='customuser_permissions',
         blank=True
     )
+
+    def __str__(self):
+        return self.username
+    
+
+class CartItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
+
+    def total_price(self):
+        return self.quantity * self.product.disPrice
+
+    def __str__(self):
+        return f"{self.product.title} ({self.quantity})"
+    
+    

@@ -1,7 +1,17 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ['username', 'email', 'role', 'is_staff']
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('role', 'phone', 'address')}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('role', 'phone', 'address')}),
+    )
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImageModel
@@ -9,6 +19,34 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
+
+
+# Inline for products in wishlist
+class WishlistProductInline(admin.TabularInline):
+    model = Wishlist.products.through
+    extra = 1
+
+# Wishlist admin
+@admin.register(Wishlist)
+class WishlistAdmin(admin.ModelAdmin):
+    list_display = ('user', 'created_at', 'updated_at')
+    inlines = [WishlistProductInline]
+    exclude = ('products',)
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'quantity', 'total_price')
+
+    def total_price(self, obj):
+            return obj.total_price()
+    total_price.short_description = 'Total Price'
+
+###############################
+
+admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Profile)
+
+
 
 ##### HomePage ############
 
@@ -113,7 +151,6 @@ admin.site.register(CartSliderModel)
 ######## WishListPage ##########
 
 admin.site.register(WishListSliderModel)
-admin.site.register(Profile)
 
 
 

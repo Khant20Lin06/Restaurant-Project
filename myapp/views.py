@@ -4,10 +4,15 @@ from itertools import chain
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm
+from .forms import CustomUserRegistrationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password, ValidationError
 
+
+User = get_user_model()
 # Create your views here.
 
 
@@ -24,7 +29,7 @@ def HomePage(request):
     DownloadAPP = DownloadAPPModel.objects.all()[:1]
     Chef = ChefModel.objects.all()[:1]
     ChefItem = ChefItemModel.objects.all()
-    BookTable = BookTableModel.objects.all()[:1]
+    BookTable = BookTableModel.objects.all()
     DateTime = DateTimeModel.objects.all()
     BookTableOrderList = BookTableOrderListModel.objects.all()
     Feedback = FeedbackModel.objects.all()[:1]
@@ -256,11 +261,16 @@ def CartPage(request):
 def WishListPage(request):
     WishListSlider = WishListSliderModel.objects.all()[:1]
     Gallery = GalleryModel.objects.all()
-    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+
+    # Get or create wishlist for this user
+    wishlist = Wishlist.objects.filter(user=request.user).first()
+    products = wishlist.products.all() if wishlist else []
+
     context = {
         'WishListSlider': WishListSlider,
         'Gallery': Gallery,
         'wishlist': wishlist,
+        'products': products,
     }
     return render(request, 'wishList.html', context)
 
@@ -270,7 +280,20 @@ def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
     wishlist.products.add(product)
-    return redirect('wishlist_view')
+    return redirect('WishListPage')
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    wishlist = get_object_or_404(Wishlist, user=request.user)
+    product = get_object_or_404(Product, id=product_id)
+    
+    wishlist.products.remove(product)
+    
+    # Optional: wishlist empty ဖြစ်ရင် delete လုပ်နိုင်
+    if wishlist.products.count() == 0:
+        wishlist.delete()
+    
+    return redirect('WishListPage')
 
 
 def CheckOutPage(request):
@@ -282,23 +305,97 @@ def CheckOutPage(request):
     }
     return render(request, 'checkOut.html', context)
 
+@login_required
+def cart_page(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+    cart_total = sum(item.total_price() for item in cart_items)
+    context = {
+        'cart_items': cart_items,
+        'cart_total': cart_total,
+    }
+    return render(request, 'cart.html', context)
+
+@login_required
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    # Check if the user is logged in
+    if not request.user.is_authenticated:
+        return redirect('loginPage')  # change this to your login URL name
+
+    # Get or create a cart item for this user & product
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect('cartPage')
+
+@login_required
+def remove_from_cart(request, cart_item_id):
+    item = CartItem.objects.get(id=cart_item_id)
+    item.delete()
+    return redirect('cartPage')
+
+def update_cart_quantity(request, cart_item_id, action):
+    item = get_object_or_404(CartItem, id=cart_item_id)
+    if action == "increase":
+        item.quantity += 1
+    elif action == "decrease" and item.quantity > 1:
+        item.quantity -= 1
+    item.save()
+    return redirect('cartPage')
 
 def LoginPage(request):
-    if request.method == "GET":
-        return render(request, 'login.html')
     if request.method == "POST":
-        username = request.POST.get('username')
-        email = request.POST.get('email')
+        identifier = request.POST.get('username_or_email')  # username or email field
         password = request.POST.get('password')
-        user = authenticate(username=username, email=email, password=password)
-    if user is not None:
-        login(request, user)
-        messages.success(request,"You are now logged in as " + username|email)
-        return redirect('')
-    else:
-        messages.error(request, "Username or email or Password is incorrect!")
+
+        user = None
+
+        # Try to find by username first
+        try:
+            user_obj = CustomUser.objects.get(username=identifier)
+            user = authenticate(request, username=user_obj.username, password=password)
+        except CustomUser.DoesNotExist:
+            # Try by email if username not found
+            try:
+                user_obj = CustomUser.objects.get(email=identifier)
+                user = authenticate(request, username=user_obj.username, password=password)
+            except CustomUser.DoesNotExist:
+                user = None
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, f"Welcome back, {user.username}!")
+            return redirect('homePage')  # Change this to your homepage URL name
+        else:
+            messages.error(request, "Invalid username/email or password.")
 
     return render(request, 'login.html')
+
+@login_required
+def move_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    # Add to cart
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    # Remove from wishlist
+    Wishlist.objects.filter(user=request.user, products=product).delete()
+
+    messages.success(request, f"{product.title} moved to your cart.")
+    return redirect('cartPage')
 
 @login_required(login_url='loginPage')
 def dashboard(request):
@@ -318,19 +415,41 @@ def dashboard(request):
 def Logout(request):  
     logout(request) 
     messages.success(request, "You are now logout! ") 
-    return redirect('login')  
+    return redirect('/login/') 
 
 def RegisterPage(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('')  # Redirect to login page after registration
-    else:
-        form = RegisterForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'register.html', context)
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Check required fields
+        if not username or not password:
+            messages.error(request, 'Username and password are required.')
+            return render(request, 'register.html')
+
+        # Validate password with Django validators
+        try:
+            validate_password(password)
+        except ValidationError as e:
+            # e is a list of error messages
+            for msg in e:
+                messages.error(request, msg)
+            return render(request, 'register.html')
+
+        # Check if username already exists
+        if CustomUser.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken.')
+            return render(request, 'register.html')
+
+        # Create user
+        user = CustomUser.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+        login(request, user)
+        messages.success(request, f"Welcome {username}! Your account has been created successfully.")
+        return redirect('homePage') 
+
+    return render(request, 'register.html')

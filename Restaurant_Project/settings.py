@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'myadmin',
     "django_ckeditor_5",
     'django.contrib.humanize',
+    
 ]
 
 MIDDLEWARE = [

@@ -39,62 +39,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cart_item">
-                        <td data-title="Product">
-                            {% for i in products %}
-                            <a class="cart-productimage" href="{% url 'shopDetailPage' i.id %}">
-                            {% endfor %}
-                                <img width="91"
-                                    height="91" src="{% static 'assets/img/menu/menu_thumb_1_1.png' %}" alt="Image"></a>
-                        </td>
-                        <td data-title="Name">
-                            {% for i in products %}
-                            <a class="cart-productname" href="{% url 'shopDetailPage' i.id %}">
-                            {% endfor %}
-                                Chicken
-                                Vagetable</a></td>
-                        <td data-title="Price"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Quantity">
-                            <div class="quantity"><button class="quantity-minus qty-btn"><i
-                                        class="far fa-minus"></i></button> <input type="number" class="qty-input"
-                                    value="1" min="1" max="99"> <button class="quantity-plus qty-btn"><i
-                                        class="far fa-plus"></i></button></div>
-                        </td>
-                        <td data-title="Total"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Remove"><a href="#" class="remove"><i class="fal fa-trash-alt"></i></a></td>
-                    </tr>
+    {% for item in cart_items %}
                     <tr class="cart_item">
                         <td data-title="Product"><a class="cart-productimage" href="shop-detailis.html"><img width="91"
-                                    height="91" src="{% static 'assets/img/menu/menu_thumb_1_2.png' %}" alt="Image"></a>
+                                    height="91" src="{{ item.product.img.url }}" alt="{{ item.product.title }}"></a>
                         </td>
-                        <td data-title="Name"><a class="cart-productname" href="shop-detailis.html">Full Chicken
-                                Grill</a></td>
-                        <td data-title="Price"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
+                        <td data-title="Name"><a class="cart-productname" href="shop-detailis.html">{{ item.product.title }}</a></td>
+                        <td data-title="Price"><span class="amount"><bdi><span>$</span>{{ item.product.disPrice }}</bdi></span></td>
                         <td data-title="Quantity">
-                            <div class="quantity"><button class="quantity-minus qty-btn"><i
-                                        class="far fa-minus"></i></button> <input type="number" class="qty-input"
-                                    value="1" min="1" max="99"> <button class="quantity-plus qty-btn"><i
-                                        class="far fa-plus"></i></button></div>
+                            <div class="quantity">
+                                <form method="post" action="{% url 'addToCart' item.product.id %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="quantity" class="qty-input" value="{{ item.quantity }}" min="1">
+                                    <button type="submit" class="qty-btn">Update</button>
+                                </form>
+                            </div>
                         </td>
-                        <td data-title="Total"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Remove"><a href="#" class="remove"><i class="fal fa-trash-alt"></i></a></td>
+                        <td data-title="Total"><span class="amount"><bdi><span>$</span>{{ item.total_price }}</bdi></span></td>
+                        <td data-title="Remove"><a href="{% url 'removeFromCart' item.id %}" class="remove"><i class="fal fa-trash-alt"></i></a></td>
                     </tr>
-                    <tr class="cart_item">
-                        <td data-title="Product"><a class="cart-productimage" href="shop-detailis.html"><img width="91"
-                                    height="91" src="{% static 'assets/img/menu/menu_thumb_1_3.png' %}" alt="Image"></a>
-                        </td>
-                        <td data-title="Name"><a class="cart-productname" href="shop-detailis.html">Italian
-                                Pizza</a></td>
-                        <td data-title="Price"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Quantity">
-                            <div class="quantity"><button class="quantity-minus qty-btn"><i
-                                        class="far fa-minus"></i></button> <input type="number" class="qty-input"
-                                    value="1" min="1" max="99"> <button class="quantity-plus qty-btn"><i
-                                        class="far fa-plus"></i></button></div>
-                        </td>
-                        <td data-title="Total"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Remove"><a href="#" class="remove"><i class="fal fa-trash-alt"></i></a></td>
-                    </tr>
+    {% endfor %}
                     <tr>
                         <td colspan="6" class="actions">
                             <div class="th-cart-coupon"><input type="text" class="form-control"

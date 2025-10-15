@@ -21,7 +21,8 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/img/favicons/apple-icon-144x144.png' %}">
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/img/favicons/apple-icon-152x152.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/img/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'assets/img/favicons/android-icon-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicons/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
@@ -38,21 +39,64 @@
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <style>
+        @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        10%,
+        90% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        }
+
+        .animate-fade-in {
+            animation: fadeInOut 3s ease-in-out forwards;
+        }
+
+        
+
         .product-big-img {
-            width: 100%; 
-            padding: auto;        /* container width အပြည့်ဖြစ်စေ */
-            max-width: 450px;    /* ကြီးသင့်တဲ့အများဆုံး အကျယ် (လိုချင်သလိုပြင်နိုင်) */
+            width: 100%;
+            padding: auto;
+            /* container width အပြည့်ဖြစ်စေ */
+            max-width: 450px;
+            /* ကြီးသင့်တဲ့အများဆုံး အကျယ် (လိုချင်သလိုပြင်နိုင်) */
             min-width: 50px;
-            padding: 10px;    /* center align */
+            padding: 10px;
+            /* center align */
         }
 
         .product-big-img .img img {
-            width: 100%;         /* image အပြည့်ဖြစ်စေ */
-            height: auto;        /* aspect ratio အတိအကျထား */
-            object-fit: contain; /* image distortion မဖြစ်အောင် */
+            width: 100%;
+            /* image အပြည့်ဖြစ်စေ */
+            height: auto;
+            /* aspect ratio အတိအကျထား */
+            object-fit: contain;
+            /* image distortion မဖြစ်အောင် */
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-dropdown #dropdownMenu {
+            display: none;
+        }
+
+        .profile-dropdown.active #dropdownMenu {
+            display: block;
         }
     </style>
 </head>
+
 <body>
 
     {% include 'header.html' %}
@@ -77,6 +121,74 @@
             element.classList.add("active");
         }
     </script>
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.notification-message').forEach(el => {
+                el.style.transition = "opacity 0.5s ease";
+                el.style.opacity = "0";
+                setTimeout(() => el.remove(), 500);
+            });
+        }, 3000);
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const profileBtn = document.getElementById('profileBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownIcon = document.getElementById('dropdownIcon');
+        let isOpen = false;
+
+        // Toggle dropdown when profile button is clicked
+        profileBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleDropdown();
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (isOpen && !dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        dropdownMenu.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+
+        function toggleDropdown() {
+            if (isOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        }
+
+        function openDropdown() {
+            isOpen = true;
+            dropdownMenu.classList.remove('opacity-0', 'invisible', 'scale-95');
+            dropdownMenu.classList.add('opacity-100', 'visible', 'scale-100');
+            dropdownIcon.style.transform = 'rotate(180deg)';
+        }
+
+        function closeDropdown() {
+            isOpen = false;
+            dropdownMenu.classList.remove('opacity-100', 'visible', 'scale-100');
+            dropdownMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+            dropdownIcon.style.transform = 'rotate(0deg)';
+        }
+
+        // Handle menu item clicks
+        const menuItems = dropdownMenu.querySelectorAll('a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                // e.preventDefault();
+                // const itemText = this.textContent.trim();
+                // alert(`You clicked: ${itemText}`);
+                closeDropdown();
+            });
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'98e09f2b45f48945',t:'MTc2MDM3NzIyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 <!-- Mirrored from themeholy.com/html/pizzan/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 14:48:58 GMT -->
 

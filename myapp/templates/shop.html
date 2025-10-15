@@ -48,16 +48,34 @@
                 <div class="th-menu">
                     <div class="th-menu_img"><img class="spin" src="{{ i.image.url }}" alt="menu Image"
                             style="width:150px; height:auto;">
-                        <div class="product-action"><a href="{% url 'cartPage' %}"><span class="action-text">Add To
-                                    cart</span><span class="icon"><i class="far fa-cart-shopping"></i></span></a> 
-                                <!-- {% if request.user.is_authenticated %}
-                                {% if products.id in user_bookmarked_movies %} -->
-                                <!-- {% endif %}
-                                {% endif %} -->
-                                    <a href="{% url 'wishListPage' %}"><span class="action-text">Wishlist</span><span class="icon"><i class="far fa-heart"></i></span></a> 
+                        <div class="product-action">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_cart' i.id %}">
+                                <span class="action-text">Add To cart</span>
+                                <span class="icon"><i class="far fa-cart-shopping"></i></span>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'loginPage' %}">
+                                <span class="action-text">LoginRequire</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% endif %}
 
-                                    <a class="" href="{% url 'shopDetailPage' i.id %}"><span class="action-text">Quick View</span><span class="icon"><i
-                                        class="far fa-eye"></i></span></a></div>
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_wishlist' i.id %}">
+                                <span class="action-text">Wishlist</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'loginPage' %}">
+                                <span class="action-text">LoginRequire</span>
+                                <span class="icon"><i class="far fa-heart"></i></span>
+                            </a>
+                            {% endif %}
+
+                            <a class="" href="{% url 'shopDetailPage' i.id %}"><span class="action-text">Quick
+                                    View</span><span class="icon"><i class="far fa-eye"></i></span></a>
+                        </div>
                         <div class="th-menu_discount"><span class="sale">{{ i.discountPercentage|safe }}% OFF</span>
                         </div>
                     </div>

@@ -130,7 +130,8 @@
                 <p class="woocommerce-mini-cart__total total"><strong>Subtotal:</strong> <span
                         class="woocommerce-Price-amount amount"><span
                             class="woocommerce-Price-currencySymbol">$</span>318.00</span></p>
-                <p class="woocommerce-mini-cart__buttons buttons"><a href="{% url 'cartPage' %}" class="th-btn wc-forward">View
+                <p class="woocommerce-mini-cart__buttons buttons"><a href="{% url 'cartPage' %}"
+                        class="th-btn wc-forward">View
                         cart</a> <a href="{% url 'checkOutPage' %}" class="th-btn checkout wc-forward">Checkout</a></p>
             </div>
         </div>
@@ -144,143 +145,132 @@
 
 <div class="th-menu-wrapper">
     <div class="th-menu-area text-center"><button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-        <div class="mobile-logo"><a href="index.html"><img src="{% static 'assets/img/logo.svg' %}" alt="Pizzan"></a>
+        <div class="mobile-logo">
+            <a href="{% url 'homePage' %}"><h1 style="font-size: xx-large;">Restaurant</h1></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
-                <li class="menu-item-has-children"><a href="index.html">Home</a>
-                    <ul class="sub-menu">
-                        <li><a href="home-restaurant.html">Restaurant Home</a></li>
-                        <li><a href="home-fast-food-rastaurant.html">Fast Food Restaurant</a></li>
-                        <li><a href="home-fast-food.html">Fast Food Home</a></li>
-                        <li><a href="home-tea-coffee.html">Tea Coffee Home <span class="new-label">New</span></a>
-                        </li>
-                        <li><a href="home-restaurant-v2.html">Restaurant Home <span class="new-label">New</span></a>
-                        </li>
-                        <li><a href="home-fast-food-v2.html">Fast Food Home <span class="new-label">New</span></a>
-                        </li>
-                        <li><a href="home-pizza-burger.html">Pizza & Burger Light <span class="new-label">New</span></a>
-                        </li>
-                        <li><a href="home-pizza-burger-dark.html">Pizza & Burger Dark <span
-                                    class="new-label">New</span></a></li>
-                    </ul>
+                <li><a href="{% url 'homePage' %}">Home</a>
                 </li>
-                <li class="menu-item-has-children"><a href="#">Menu</a>
-                    <ul class="sub-menu">
-                        <li><a href="menu-fast.html">Fast Food Menu</a></li>
-                        <li><a href="menu-fast-v2.html">Fast Food Menu v2</a></li>
-                        <li><a href="menu-rest.html">Restaurant Food Menu</a></li>
-                        <li><a href="menu-rest-v2.html">Restaurant Food Menu v2</a></li>
-                    </ul>
+                <li><a href="{% url 'menuPage' %}">Menu</a>
                 </li>
-                <li class="menu-item-has-children"><a href="#">Shop</a>
-                    <ul class="sub-menu">
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shop-v2.html">Shop v2</a></li>
-                        <li><a href="shop-details.html">Shop Details</a></li>
-                        <li><a href="shop-details-v2.html">Shop Details v2</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children mega-menu-wrap"><a href="#">Pages</a>
-                    <ul class="mega-menu">
-                        <li><a href="shop.html">Pagelist 1</a>
-                            <ul>
-                                <li><a href="home-restaurant.html">Restaurant Home</a></li>
-                                <li><a href="home-fast-food-rastaurant.html">Fast Food Restaurant</a></li>
-                                <li><a href="home-fast-food.html">Fast Food Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="about-v2.html">About Us v2</a></li>
-                                <li><a href="reservation.html">Reservation</a></li>
-                                <li><a href="reservation-v2.html">Reservation v2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Pagelist 2</a>
-                            <ul>
-                                <li><a href="menu-fast.html">Fast Food Menu</a></li>
-                                <li><a href="menu-rest.html">Restaurant Food Menu</a></li>
-                                <li><a href="team.html">Our Chef</a></li>
-                                <li><a href="team-v2.html">Our Chef v2</a></li>
-                                <li><a href="team-details.html">Chef Details</a></li>
-                                <li><a href="team-details-v2.html">Chef Details v2</a></li>
-                                <li><a href="faq.html">Faq Page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Pagelist 3</a>
-                            <ul>
-                                <li><a href="faq-v2.html">Faq Page v2</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="shop-v2.html">Shop v2</a></li>
-                                <li><a href="shop-details.html">Shop Details</a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Pagelist 4</a>
-                            <ul>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                                <li><a href="testimonial.html">Testimonial</a></li>
-                                <li><a href="testimonial-v2.html">Testimonial v2</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="contact-v2.html">Contact Us v2</a></li>
-                                <li><a href="error.html">Error Page</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children"><a href="#">News</a>
-                    <ul class="sub-menu">
-                        <li><a href="blog.html">News</a></li>
-                        <li><a href="blog-details.html">News Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="{% url 'shopPage' %}">Shop</a></li>
+                <li><a href="{% url 'newPage' %}">News</a></li>
+                <li><a href="{% url 'contactPage' %}">Contact Us</a></li>
+{% if CustomerUser.is_authentication %}
+                <li><a href="{% url 'loginPage' %}">Login</a></li>
+                <li><a href="{% url 'registerPage' %}">Register</a></li>
+{% else %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endif %}
             </ul>
         </div>
     </div>
 </div>
 
 <header class="th-header header-layout3">
-        <div class="sticky-wrapper">
-            <div class="sticky-active">
-                <div class="menu-area">
-                    <div class="container th-container">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-auto">
-                                <div class="header-logo"><a href="index.html"><h1>Restaurant</h1></a></div>
+    <div class="sticky-wrapper">
+        <div class="sticky-active">
+            <div class="menu-area">
+                <div class="container th-container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="header-logo">
+                                <a href="{% url 'homePage' %}"><h1 style="font-size: xx-large;">Restaurant</h1></a>
                             </div>
-                            <div class="col-auto">
-                                <nav class="main-menu d-none d-lg-inline-block">
-                                    <ul>
-                                        <li><a href="{% url 'homePage' %}">Home</a>
-                                        </li>
-                                        <li><a href="{% url 'menuPage' %}">Menu</a>
-                                        </li>
-                                        <li><a href="{% url 'shopPage' %}">Shop</a></li>
-                                        <li><a href="{% url 'newPage' %}">News</a></li>
-                                        <li><a href="{% url 'contactPage' %}">Contact Us</a></li>
-                                    </ul>
-                                </nav><button type="button" class="th-menu-toggle d-inline-block d-lg-none"><i
-                                        class="far fa-bars"></i></button>
-                            </div>
-                            <div class="col-auto d-none d-xl-block">
-                                <div class="header-button">
-                                    <button type="button" class="icon-btn searchBoxToggler"><i class="far fa-search"></i></button> 
-                                    <button type="button" class="icon-btn sideMenuToggler d-none d-xl-block"><i class="far fa-cart-shopping"></i> <span class="badge">5</span></button> 
-                                    <a href="{% url 'contactPage' %}" class="icon-btn d-none d-xxl-block"><i class="far fa-user"></i></a>
-                                
-                                    <a href="{% url 'logoutPage' %}" class="icon-btn d-none d-xxl-block">Logout</a>
-                                 
-                                    <a href="{% url 'loginPage' %}" class="icon-btn d-none d-xxl-block">Login</a>
-                                    <a href="{% url 'registerPage' %}" class="icon-btn d-none d-xxl-block">Register</a>
-                                
-                                </div>
+                        </div>
+                        <div class="col-auto">
+                            <nav class="main-menu d-none d-lg-inline-block">
+                                <ul>
+                                    <li><a href="{% url 'homePage' %}">Home</a>
+                                    </li>
+                                    <li><a href="{% url 'menuPage' %}">Menu</a>
+                                    </li>
+                                    <li><a href="{% url 'shopPage' %}">Shop</a></li>
+                                    <li><a href="{% url 'newPage' %}">News</a></li>
+                                    <li><a href="{% url 'contactPage' %}">Contact Us</a></li>
+                                </ul>
+                            </nav><button type="button" class="th-menu-toggle d-inline-block d-lg-none"><i
+                                    class="far fa-bars"></i></button>
+                        </div>
+                        <div class="col-auto d-none d-xl-block">
+                            <div class="header-button">
+                                <button type="button" class="icon-btn searchBoxToggler"><i
+                                        class="far fa-search"></i></button>
+                                <button type="button" class="icon-btn sideMenuToggler d-none d-xl-block"><i
+                                        class="far fa-cart-shopping"></i> <span class="badge">5</span></button>
 
+                                <!-- Header with Profile Button -->
+                                <div class="flex justify-end mb-1">
+                                    <div class="relative">
+                                        <!-- Profile Button -->
+                                        <button id="profileBtn" type="button" class="icon-btn d-none d-xxl-block">
+                                            <span class="text-gray-700 font-medium"><i class="far fa-user"></i></span>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div id="dropdownMenu"
+                                            class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible transform scale-95 transition-all duration-200 z-50">
+                                            <div class="py-2">
+                                                <!-- User Info -->
+                                                <div class="px-4 py-3 border-gray-100">
+                                                    <div class="flex items-center space-x-3">
+                                                        <div
+                                                            class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                                                            U
+                                                        </div>
+                                                        <div>
+                                                            {% if request.user.is_authenticated %}
+                                                                <p class="text-sm font-medium text-gray-900">{{ request.user.username }}</p>
+                                                                <p class="text-xs text-gray-500">{{ request.user.email }}</p>
+                                                            {% else %}
+                                                                <p class="text-sm font-medium text-gray-900">Guest User</p>
+                                                                <p class="text-xs text-gray-500">guest@example.com</p>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Menu Items -->
+
+                                                {% if request.user.is_authenticated %}
+                                                <div class="border-t border-gray-100 mt-2 pt-2">
+                                                    <a href="{% url 'logout' %}"
+                                                        class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150">
+                                                        <svg class="w-4 h-4 mr-3 text-red-500" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                            </path>
+                                                        </svg>
+                                                        Logout
+                                                    </a>
+                                                </div>
+                                                {% else %}
+                                                <div class="border-t border-gray-100 mt-2 pt-2">
+                                                    <a href="{% url 'loginPage' %}"
+                                                        class="flex items-center px-4 py-2 text-sm text-dark-600 hover:bg-dark-50 transition-colors duration-150">
+                                                        Login
+                                                    </a>
+                                                </div>
+
+                                                <div class="border-t border-gray-100 mt-2 pt-2">
+                                                    <a href="{% url 'registerPage' %}"
+                                                        class="flex items-center px-4 py-2 text-sm text-dark-600 hover:bg-dark-50 transition-colors duration-150">
+                                                        Register
+                                                    </a>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>

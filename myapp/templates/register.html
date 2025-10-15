@@ -65,11 +65,12 @@
         Preloader end
     ********************-->
 {% if messages %} 
+  <div id="notification-wrapper" class="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
     {% for message in messages %} 
 
         <div class="col-xl-6 offset-xl-3 overflow">
-            <div class="alert alert-primary solid {{ message.tags }} alert-dismissible fade show">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"><span><i class="fa-solid fa-xmark"></i></span>
+            <div class="alert alert-primary solid notification-message bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg mb-3 animate-fade-in {{ message.tags }} alert-dismissible fade show">
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()" data-bs-dismiss="alert" aria-label="btn-close"><span><i class="fa-solid fa-xmark"></i></span>
                 </button>
                 <div class="media">
                     <div class="media-body">
@@ -80,6 +81,7 @@
             </div>
         </div>
     {% endfor %} 
+  </div>
 {% endif %}
     <!--**********************************
         Main wrapper start
@@ -93,7 +95,6 @@
                     <h1 class="mb-2 text-white">Restaurant</h1>
                 </div>
                 <h3 class="mb-2 text-white">Welcome back!</h3>
-                <p class="mb-4">User Experience & Interface Design <br>Strategy SaaS Solutions</p>
             </div>
             <div class="aside-image position-relative" style="background-image:url('{% static "admin/images/background/pic-2.png" %}');">
             </div>
@@ -150,25 +151,25 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
                                             class="form-label mb-2 fs-13 label-color font-w500">Username</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" name="username"
                                             placeholder="Username">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput2"
                                             class="form-label mb-2 fs-13 label-color font-w500">Email address</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput2"
+                                        <input type="email" class="form-control" id="exampleFormControlInput2" name="email"
                                             placeholder="Email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput3"
                                             class="form-label mb-2 fs-13 label-color font-w500">Password</label>
-                                        <input type="password" class="form-control" id="exampleFormControlInput3"
+                                        <input type="password" class="form-control" id="exampleFormControlInput3" name="password"
                                             placeholder="Password">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput3"
                                             class="form-label mb-2 fs-13 label-color font-w500">Confirm Password</label>
-                                        <input type="Password" class="form-control" id="exampleFormControlInput3"
+                                        <input type="Password" class="form-control" id="exampleFormControlInput3" name="cPassword"
                                             placeholder="Confirm Password">
                                     </div>
                                     <a href="javascript:void(0);" class="text-primary float-end mb-4">Forgot Password
