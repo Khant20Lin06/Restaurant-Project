@@ -16,12 +16,29 @@
 						</ul>
 
 					</li>
+					<li><a class=" " href="{% url 'CategoryList' %}" aria-expanded="false">
+							<i class="material-symbols-outlined">category</i>
+							<span class="nav-text">Category</span>
+						</a>
+					</li>
+					<li><a class=" " href="{% url 'ProductList' %}" aria-expanded="false">
+							<i class="material-symbols-outlined">widgets</i>
+							<span class="nav-text">Product</span>
+						</a>
+					</li>
+					<li><a class=" " href="{% url 'ProductDetailList' %}" aria-expanded="false">
+							<i class="material-symbols-outlined">app_registration</i>
+							<span class="nav-text">ProductDetail</span>
+						</a>
+					</li>
 					<li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-							<i class="material-symbols-outlined">school</i>
+							<i class="material-symbols-outlined">article</i>
 							<span class="nav-text">HomePage</span>
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="{% url 'MainSliderList' %}">MainSlider</a></li>
+							<li><a href="{% url 'AboutList' %}">About</a></li>
+							<li><a href="{% url 'AboutItemList' %}">AboutItem</a></li>
 
 						</ul>
 

@@ -23,15 +23,15 @@
                                         </svg> </a></span>
                             </div>
                             <div>
-                                <select class="image-select bs-select dashboard-select me-3" aria-label="Default">
-                                    <option selected>Newest</option>
-                                    <option value="1">Oldest</option>
-                                    <option value="2">Recent</option>
+                                <select id="sortProducts" class="image-select bs-select dashboard-select me-3" aria-label="Default" onchange="location = this.value;">
+                                    <option value="{% url 'CategoryList' %}?sort=newest" {% if sort_by == 'newest' %}selected{% endif %}>Newest</option>
+                                    <option value="{% url 'CategoryList' %}?sort=oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
+                                    <option value="{% url 'CategoryList' %}?sort=recent" {% if sort_by == 'recent' %}selected{% endif %}>Recent</option>
                                 </select>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                    <a href="{% url 'MainSliderCreate' %}"> + New </a>
+                                    <a href="{% url 'CategoryCreate' %}"> + New </a>
                                 </button>
                             </div>
                         </div>
@@ -48,12 +48,7 @@
                                             <input type="checkbox" class="form-check-input" id="checkAll" required="" />
                                         </th>
                                         <th>Num</th>
-                                        <th>Into1</th>
-                                        <th>Into2</th>
-                                        <th>Into3</th>
-                                        <th>Into4</th>
-                                        <th>Order</th>
-                                        <th>Menu</th>
+                                        <th>Name</th>
                                         <th>Image</th>
                                         <th>created_at</th>
                                         <th>updated_at</th>
@@ -61,7 +56,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in mainSlider %}
+                                    {% for i in category %}
                                     <tr>
                                         <td>
                                             <div class="checkbox me-0 align-self-center">
@@ -76,29 +71,14 @@
                                             <h6 class="date">{{ i.num }}</h6>
                                         </td>
                                         <td>
-                                            <div class="mb-0">{{ i.into1 }}</div>
-                                        </td>
-                                        <td>
-                                            <h6 class="mb-0">{{ i.into2 }}</h6>
-                                        </td>
-                                        <td>
-                                            <h6 class="mb-0">{{ i.into3 }}</h6>
-                                        </td>
-                                        <td>
-                                            <h6 class="mb-0">{{ i.into4 }}</h6>
-                                        </td>
-                                        <td>
-                                            <h6 class="mb-0">{{ i.order }}</h6>
-                                        </td>
-                                        <td>
-                                            <h6 class="mb-0">{{ i.menu }}</h6>
+                                            <h6 class="mb-0">{{ i.name }}</h6>
                                         </td>
                                         <td>
                                             <div class="trans-list">
-                                                {% if i.bgImage %}
-                                                <img src="{{ i.bgImage.url }}" alt="{{ i.num }}" class="avatar me-3" />
+                                                {% if i.image %}
+                                                <img src="{{ i.image.url }}" alt="{{ i.name }}" class="avatar me-3" />
                                                 {% else %}
-                                                <img src="/static/images/default.jpg" alt="No Image"
+                                                <img src="{% static 'admin/images/no-img-avatar.png' %}" alt="No Image"
                                                     class="avatar me-3" />
                                                 {% endif %}
                                             </div>
@@ -132,16 +112,16 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item"
-                                                        href="{% url 'MainSliderUpdate' i.id %}"><button
+                                                        href="{% url 'CategoryUpdate' i.id %}"><button
                                                             type="submit">Update</button></a>
                                                     <a class="dropdown-item" href="javascript:void(0);">
-                                                        <form action="{% url 'MainSliderDelete' i.id %}" method="post">
+                                                        <form action="{% url 'CategoryDelete' i.id %}" method="post">
                                                             {% csrf_token %}
                                                             <button type="submit"
                                                                 onclick="return confirm('Are you sure you want to delete this todo?')">Delete</button>
                                                         </form>
                                                     </a>
-                                                    <a class="dropdown-item" href="{% url 'MainSliderDetail' i.id %}">
+                                                    <a class="dropdown-item" href="{% url 'CategoryDetail' i.id %}">
                                                         <button type="submit">Detail</button>
                                                     </a>
                                                 </div>

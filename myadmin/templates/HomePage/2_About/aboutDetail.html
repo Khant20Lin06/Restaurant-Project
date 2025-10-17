@@ -1,0 +1,150 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">About Detail</h5>
+                </div>
+                <form action="{% url 'AboutDetail' about.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Title
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="name" value="{% if about %}{{ about.name }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Description
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="description" value="{% if about %}{{ about.description }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Description">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Tag
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="tag" value="{% if about %}{{ about.tag }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Tag">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Text
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="into" value="{% if about %}{{ about.into }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Text">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Profile Name
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="pName" value="{% if about %}{{ about.pName }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Profile Name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Position
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="position" value="{% if about %}{{ about.position }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Position">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Experience
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="year" value="{% if about %}{{ about.year }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Experience">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Company
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="company" value="{% if about %}{{ about.company }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Company">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-primary">Photo<span class="required">*</span></label>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            {% if about.image %}
+                                                <div id="imagePreview" style="background-image: url('{{ about.image.url }}');"></div>
+                                            {% else %}
+                                                <div id="imagePreview" style="background-image: url('{% static "admin/images/no-img-avatar.png" %}');"></div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="change-btn mt-1">
+                                            <input type='file' name="image"
+                                            class="form-control d-none" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                            <label for="imageUpload"
+                                                class="dlab-upload mb-0 btn btn-primary btn-sm">Choose
+                                                File</label>
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-danger light remove-img ms-2 btn-sm">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-primary">Photo<span class="required">*</span></label>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            {% if about.pImage %}
+                                                <div id="imagePreview" style="background-image: url('{{ about.pImage.url }}');"></div>
+                                            {% else %}
+                                                <div id="imagePreview" style="background-image: url('{% static "admin/images/no-img-avatar.png" %}');"></div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="change-btn mt-1">
+                                            <input type='file' name="pImage"
+                                            class="form-control d-none" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                            <label for="imageUpload"
+                                                class="dlab-upload mb-0 btn btn-primary btn-sm">Choose
+                                                File</label>
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-danger light remove-img ms-2 btn-sm">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-outline-primary me-3"><a href="{% url 'AboutList' %}">Back</a></button>
+                            <button class="btn btn-outline-primary me-3"><a href="{% url 'AboutUpdate' about.id %}">Update</a></button>
+                            <!-- <form action="{% url 'MainSliderDelete' mainSlider.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-primary" type="submit" onclick="return confirm('Are you sure you want to delete this todo?')">Delete</button>
+                            </form> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}

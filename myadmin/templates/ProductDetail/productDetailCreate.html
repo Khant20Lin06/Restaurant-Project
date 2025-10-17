@@ -1,0 +1,149 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">ProductDetail Create</h5>
+                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Name
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="title" value="{% if productDetail %}{{ productDetail.title }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Description
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="description" value="{% if productDetail %}{{ productDetail.description }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Description">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Price
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="price" value="{% if productDetail %}{{ productDetail.price }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Price">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">DisPrice
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="disPrice" value="{% if productDetail %}{{ productDetail.disPrice }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="DisPrice">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">SKU
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="sku" value="{% if productDetail %}{{ productDetail.sku }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="SKU">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Category</label>
+									<select name="category" class="selectpicker w-100 form-control">
+                                        <option value="">-- Select Category --</option>
+                                        {% for i in categories %}
+                                            <option value="{{ i.id }}" 
+                                                {% if productDetail and productDetail.category.id == i.id %}
+                                                    selected
+                                                {% endif %}>
+                                                {{ i.name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Product</label>
+									<select name="product" class="selectpicker w-100 form-control">
+                                        <option value="">-- Select Product --</option>
+                                        {% for i in products %}
+                                            <option value="{{ i.id }}" 
+                                                {% if productDetail and productDetail.product.id == i.id %}
+                                                    selected
+                                                {% endif %}>
+                                                {{ i.title }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Tag</label>
+									<select name="tag" class="selectpicker w-100 form-control">
+                                        <option value="">-- Select Tag --</option>
+                                        {% for i in tags %}
+                                            <option value="{{ i.id }}" 
+                                                {% if productDetail and productDetail.tag.id == i.id %}
+                                                    selected
+                                                {% endif %}>
+                                                {{ i.name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-primary">Photo<span class="required">*</span></label>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            {% if productDetail.images.all %}
+                                                {% for i in productDetail.images.all %}
+                                                <div id="imagePreview" style="background-image: url('{{ i.image.url }}');"></div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div id="imagePreview" style="background-image: url('{% static "admin/images/no-img-avatar.png" %}');"></div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="change-btn mt-1">
+                                            <input type='file' name="image"
+                                            class="form-control d-none" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                            <label for="imageUpload"
+                                                class="dlab-upload mb-0 btn btn-primary btn-sm">Choose
+                                                File</label>
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-danger light remove-img ms-2 btn-sm">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-outline-primary me-3"><a href="{% url 'ProductDetailList' %}">Back</a></button>
+                            <button class="btn btn-primary" type="submit">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}

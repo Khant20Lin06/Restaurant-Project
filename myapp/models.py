@@ -58,7 +58,7 @@ class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50, blank=True, null=True)
     text = models.CharField(max_length=300, blank=True, null=True)
-    price = models.IntegerField(blank=True, null=True)           # Normal price
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)          # Normal price
     disPrice = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     discountPercentage = models.IntegerField(blank=True, null=True, editable=False)  # Auto calculated
     image = models.ImageField(upload_to="Product")
@@ -81,8 +81,8 @@ class ProductDetail(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
-    price = models.IntegerField(blank=True, null=True)           # Normal price
-    disPrice = models.IntegerField( blank=True, null=True)        # Discounted price
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)           # Normal price
+    disPrice = models.DecimalField(max_digits=10, decimal_places=2, default=0)      # Discounted price
     discountPercentage = models.IntegerField(blank=True, null=True, editable=False)  # Auto calculated
     SKU = models.CharField(max_length=50, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)

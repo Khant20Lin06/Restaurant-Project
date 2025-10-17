@@ -7,7 +7,7 @@ def MainSliderList(request):
     context = {
         'mainSlider' : mainSlider
     }
-    return render(request,'HomePage/MainSlider/mainsliderlist.html',context)
+    return render(request,'HomePage/1_MainSlider/mainsliderlist.html',context)
 
 def MainSliderCreate(request):
     if request.method == 'POST':
@@ -31,7 +31,7 @@ def MainSliderCreate(request):
             bgImage = bgImage,
         )
         return redirect('MainSliderList')
-    return render(request,'HomePage/MainSlider/mainslidercreate.html')
+    return render(request,'HomePage/1_MainSlider/mainslidercreate.html')
 
 def MainSliderUpdate(request, pk):
     mainSlider = get_object_or_404(MainSliderModel, pk=pk)
@@ -52,12 +52,12 @@ def MainSliderUpdate(request, pk):
         mainSlider.save()
         return redirect('MainSliderList')
 
-    return render(request, 'HomePage/MainSlider/mainsliderupdate.html', {'mainSlider': mainSlider})
+    return render(request, 'HomePage/1_MainSlider/mainsliderupdate.html', {'mainSlider': mainSlider})
     # return render(request,'mainsliderupdate.html')
 
 def MainSliderDetail(request, pk):
     mainSlider = get_object_or_404(MainSliderModel, pk=pk)
-    return render(request,'HomePage/MainSlider/mainsliderdetail.html',{ 'mainSlider': mainSlider })
+    return render(request,'HomePage/1_MainSlider/mainsliderdetail.html',{ 'mainSlider': mainSlider })
     # return render(request,'mainsliderdetail.html')
 
 def MainSliderDelete(request,pk):
@@ -67,5 +67,21 @@ def MainSliderDelete(request,pk):
         mainSlider.delete()
         return redirect('MainSliderList')
 
-    return render(request,'HomePage/MainSlider/mainsliderlist.html',{ 'mainSlider': mainSlider })
+    return render(request,'HomePage/1_MainSlider/mainsliderlist.html',{ 'mainSlider': mainSlider })
     # return render(request,'mainsliderlist.html')
+
+def MainSliderList(request):
+    sort_by = request.GET.get('sort', 'newest')  # default newest
+
+    if sort_by == 'oldest':
+        mainSlider = MainSliderModel.objects.all().order_by('created_at')
+    elif sort_by == 'recent':
+        mainSlider = MainSliderModel.objects.all().order_by('-updated_at')
+    else:  # newest
+        mainSlider = MainSliderModel.objects.all().order_by('-created_at')
+
+    context = {
+        'mainSlider': mainSlider,
+        'sort_by': sort_by
+    }
+    return render(request,'HomePage/1_MainSlider/mainsliderList.html',context)
