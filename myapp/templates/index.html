@@ -180,7 +180,7 @@
                                 <span class="icon"><i class="far fa-heart"></i></span>
                             </a>
                             {% endif %}
-                            <a class="popup-content" href="#QuickView"><span class="action-text">Quick View</span><span class="icon"><i
+                            <a class="popup-content" href="{% url 'shopDetailPage' i.id %}"><span class="action-text">Quick View</span><span class="icon"><i
                                         class="far fa-eye"></i></span></a></div>
                         <div class="th-menu_discount"><span class="sale">{{ i.discountPercentage|safe }}% OFF</span></div>
                     </div>
@@ -265,18 +265,24 @@
     <div class="container">
         <div class="row gy-30">
             <div class="col-md-1">
-                <ul class="discount_counter1 counter-list" data-offer-date="09/09/2023">
+                <ul class="discount_counter1 counter-list" 
+                    data-offer-date="{{ i.start_date|date:'Y-m-d H:i:s' }}"
+                    data-duration="{{ i.duration_days }}">
                     <li>
-                        <div class="day count-number">{{ i.day|safe }}</div><span class="count-name">Days</span>
+                        <div class="day count-number">00</div>
+                        <span class="count-name">Days</span>
                     </li>
                     <li>
-                        <div class="hour count-number">{{ i.hour|safe }}</div><span class="count-name">Hours</span>
+                        <div class="hour count-number">00</div>
+                        <span class="count-name">Hours</span>
                     </li>
                     <li>
-                        <div class="minute count-number">{{ i.min|safe }}</div><span class="count-name">Min</span>
+                        <div class="minute count-number">00</div>
+                        <span class="count-name">Min</span>
                     </li>
                     <li>
-                        <div class="seconds count-number">{{ i.sec|safe }}</div><span class="count-name">Sec</span>
+                        <div class="seconds count-number">00</div>
+                        <span class="count-name">Sec</span>
                     </li>
                 </ul>
             </div>
@@ -284,13 +290,13 @@
                 <h2 class="text-white fw-semibold mt-n2">{{ i.title|safe }}</h2>
                 <p class="text-white mb-4">{{ i.description|safe }}</p>
                 <div class="btn-wrap"><a href="{% url 'shopPage' %}" class="th-btn style6">Order now</a>
-                    <h5 class="price_style1">{{ i.price|safe }} - <del>{{ i.discount|safe }}</del></h5>
+                    <h5 class="price_style1">{{ i.disPrice|intcomma }} - <del>{{ i.price|intcomma }}</del></h5>
                 </div>
             </div>
         </div>
         <div class="discount_style2" data-bg-src="{% static 'assets/img/shape/discount_bg_2.svg' %}">
             <p class="small-text1">GET UP TO</p>
-            <h3 class="percentage">{{ i.promotion|safe }}</h3>
+            <h3 class="percentage">{{ i.discountPercentage|safe }}%</h3>
             <p class="small-text2">OFF NOW</p>
         </div>
         {% endfor %}
@@ -299,6 +305,44 @@
 
 
 <!-- Our Strength -->
+<!-- <section class="space z-index-common">
+        <div class="bg-img shape_style1" data-bg-src="assets/img/bg/feature_bg_1.png"></div>
+        <div class="container z-index-common">
+            <div class="title-area text-center"><span class="sub-title"><img class="icon"
+                        src="{% static 'assets/img/icon/title_icon.svg' %}" alt="icon"> Our Strength</span>
+                <h2 class="sec-title">Our Most Loved <span class="font-style text-theme">Foods</span></h2>
+                <p class="sec-text ms-auto me-auto">Objectively pontificate quality models before intuitive information.
+                    Dramatically recaptiualize multifunctional materials.</p>
+            </div>
+            <div class="feature-grid-wrap">
+                <div class="feature-grid">
+                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_1.svg' %}" alt="Food"></div>
+                    <div>
+                        <h3 class="feature-grid_title box-title">Fast Foods</h3>
+                        <p class="feature-grid_text">Professionally fabricate e-business vortals and impactful core
+                            competencie. Compellingly impact technically sound</p>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_2.svg' %}" alt="Food"></div>
+                    <div>
+                        <h3 class="feature-grid_title box-title">Healthy Foods</h3>
+                        <p class="feature-grid_text">Professionally fabricate e-business vortals and impactful core
+                            competencie. Compellingly impact technically sound</p>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_3.svg' %}" alt="Food"></div>
+                    <div>
+                        <h3 class="feature-grid_title box-title">Hygienic Foods</h3>
+                        <p class="feature-grid_text">Professionally fabricate e-business vortals and impactful core
+                            competencie. Compellingly impact technically sound</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
 <section class="space z-index-common">
     <div class="bg-img shape_style1" data-bg-src=""></div>
     <div class="container z-index-common">
@@ -308,8 +352,8 @@
             <p class="sec-text ms-auto me-auto">{{ i.description|safe }}</p>
         </div>
     {% endfor %}
+{% for i in StrengthItem %}
         <div class="feature-grid-wrap">
-            {% for i in StrengthItem %}
             <div class="feature-grid">
                 <div class="feature-grid_img"><img src="{% static 'assets/img/icon/feature_3_1.svg' %}" alt="Food">
                 </div>
@@ -334,8 +378,8 @@
                     <p class="feature-grid_text">{{ i.description2|safe }}</p>
                 </div>
             </div>
-            {% endfor %}
         </div>
+{% endfor %}
     </div>
 </section>
 
@@ -637,24 +681,29 @@
                         {{ i.tag|safe }}
                     </span>
                 </h2>
-                <form action="" method="POST"
-                    class="booking-form style2">
+                <form action="{% url 'book_a_table' %}" method="POST" class="booking-form style2">
+                    {% csrf_token %}
                     <div class="row">
-                        <div class="form-group col-lg-4"><input type="text" class="form-control date-pick"
-                                id="date-pick" name="date" placeholder="Select Date"> <i
-                                class="fal fa-calendar-days"></i></div>
-                        <div class="form-group col-lg-4"><input type="text" class="form-control time-pick"
-                                id="time-pick" name="time" placeholder="Select-time"> <i class="fal fa-clock"></i>
+                        <div class="form-group col-lg-4">
+                            <input type="text" class="form-control date-pick" name="date" placeholder="Select Date">
+                            <i class="fal fa-calendar-days"></i>
                         </div>
-                        <div class="form-group col-lg-4"><input type="number" class="form-control" name="guest"
-                                id="guest" placeholder="Total Guests"> <i class="fal fa-user-group"></i></div>
-                        <div class="form-group col-12"><textarea name="message" id="message" cols="30" rows="3"
-                                class="form-control" placeholder="Write Message"></textarea> <i
-                                class="fal fa-comment"></i></div>
-                        <div class="form-btn col-12 text-center"><button class="th-btn style3">{{ i.thm_text|safe }}
-                            </button></div>
+                        <div class="form-group col-lg-4">
+                            <input type="text" class="form-control time-pick" name="time" placeholder="Select Time">
+                            <i class="fal fa-clock"></i>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <input type="number" class="form-control" name="guest" placeholder="Total Guests">
+                            <i class="fal fa-user-group"></i>
+                        </div>
+                        <div class="form-group col-12">
+                            <textarea name="message" cols="30" rows="3" class="form-control" placeholder="Write Message"></textarea>
+                            <i class="fal fa-comment"></i>
+                        </div>
+                        <div class="form-btn col-12 text-center">
+                            <button class="th-btn style3" type="submit">Book Now</button>
+                        </div>
                     </div>
-                    <p class="form-messages mb-0 mt-3"></p>
                 </form>
             </div>
         </div>

@@ -44,9 +44,6 @@
                                 id="example-student">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <input type="checkbox" class="form-check-input" id="checkAll" required="" />
-                                        </th>
                                         <th>Num</th>
                                         <th>Name</th>
                                         <th>Image</th>
@@ -58,15 +55,6 @@
                                 <tbody>
                                     {% for i in category %}
                                     <tr>
-                                        <td>
-                                            <div class="checkbox me-0 align-self-center">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="form-check-input" id="check16"
-                                                        required="" />
-                                                    <label class="custom-control-label" for="check16"></label>
-                                                </div>
-                                            </div>
-                                        </td>
                                         <td>
                                             <h6 class="date">{{ i.num }}</h6>
                                         </td>

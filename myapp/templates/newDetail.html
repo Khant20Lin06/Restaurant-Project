@@ -79,41 +79,69 @@
                 <div class="th-comments-wrap">
                     <h2 class="blog-inner-title h3">Comments ({{ CommentCount }})</h2>
                     <ul class="comment-list">
-{% for i in Comment %}
+                        {% for comment in Comments %}
                         <li class="th-comment-item">
                             <div class="th-post-comment">
-                                <div class="comment-avater"><img src="{{ i.image.url }}"
-                                        alt="Comment Author"></div>
-                                <div class="comment-content"><span class="commented-on"><i
-                                            class="fal fa-calendar-alt"></i>{{ i.date|safe }}</span>
-                                    <h3 class="name">{{ i.name|safe }}</h3>
-                                    <p class="text">{{ i.text|safe }}</p>
-                                    <div class="reply_and_edit"><a href="blog-details.html" class="reply-btn"><i
-                                                class="fas fa-reply"></i>Reply</a></div>
+                                <div class="comment-avater">
+                                    {% if comment.user.profile.image %}
+                                        <img src="{{ comment.user.profile.image.url }}" alt="{{ comment.user.username }}">
+                                    {% else %}
+                                        <img src="{% static 'admin/images/no-img-avatar.png' %}" alt="{{ comment.user.username }}">
+                                    {% endif %}
+                                </div>
+                                <div class="comment-content">
+                                    <span class="commented-on">{{ comment.created_at|date:"d M, Y" }}</span>
+                                    <h3 class="name">{{ comment.user.username }}</h3>
+                                    <p class="text">{{ comment.content }}</p>
+                                    <div class="reply_and_edit">
+                                        <a href="{% url 'post_reply' comment.id %}" class="reply-btn">Reply</a>
+                                    </div>
                                 </div>
                             </div>
+
+                            {% if comment.replies.all %}
+                            <ul class="children">
+                                {% for reply in comment.replies.all %}
+                                <li class="th-comment-item">
+                                    <div class="th-post-comment">
+                                        <div class="comment-avater">
+                                            {% if reply.user.profile.image %}
+                                                <img src="{{ reply.user.profile.image.url }}" alt="{{ reply.user.username }}">
+                                            {% else %}
+                                                <img src="{% static 'admin/images/no-img-avatar.png' %}" alt="{{ reply.user.username }}">
+                                            {% endif %}
+                                        </div>
+                                        <div class="comment-content">
+                                            <span class="commented-on">{{ reply.created_at|date:"d M, Y" }}</span>
+                                            <h3 class="name">{{ reply.user.username }}</h3>
+                                            <p class="text">{{ reply.content }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
                         </li>
-{% endfor %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="th-comment-form">
                     <div class="form-title">
                         <h3 class="blog-inner-title mb-0">Leave a Comment</h3>
-                        <p class="form-text">Your email address will not be published. Required fields are marked *
-                        </p>
+                        <p class="form-text">Your email address will not be published. Required fields are marked *</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group"><input type="text" placeholder="Your Name*"
-                                class="form-control"> <i class="fal fa-user"></i></div>
-                        <div class="col-md-6 form-group"><input type="text" placeholder="Your Email*"
-                                class="form-control"> <i class="fal fa-envelope"></i></div>
-                        <div class="col-12 form-group"><input type="text" placeholder="Website" class="form-control"> <i
-                                class="fal fa-globe"></i></div>
-                        <div class="col-12 form-group"><textarea placeholder="Write a Comment*"
-                                class="form-control"></textarea> <i class="fal fa-pencil"></i></div>
-                        <div class="col-12 form-group mb-0"><button class="th-btn rounded-2">Post Comment</button>
+                    <form method="post" action="{% url 'post_comment' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                {{ form.content }}  <!-- Render the form field here -->
+            <i class="fal fa-pencil"></i>
+                            </div>
+                            <div class="col-12 form-group mb-0">
+                                <button class="th-btn rounded-2" type="submit">Post Comment</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="col-xxl-4 col-lg-5">

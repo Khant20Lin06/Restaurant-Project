@@ -1,0 +1,132 @@
+{% extends 'admin_base.html' %}
+{% load humanize %} {% load static %} {% block body %}
+
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="page-title flex-wrap">
+                            <div class="input-group search-area mb-md-0 mb-3">
+                                <input type="text" class="form-control" placeholder="Search here..." />
+                                <span class="input-group-text"><a href="javascript:void(0)">
+                                        <svg width="15" height="15" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
+                                                fill="#01A3FF" />
+                                        </svg> </a></span>
+                            </div>
+                            <div>
+                                <select id="sortProducts" class="image-select bs-select dashboard-select me-3"
+                                    aria-label="Default" onchange="location = this.value;">
+                                    <option value="{% url 'OrderList' %}?sort=newest" {% if sort_by == 'newest' %}selected{% endif %}>Newest</option>
+                                    <option value="{% url 'OrderList' %}?sort=oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
+                                    <option value="{% url 'OrderList' %}?sort=recent" {% if sort_by == 'recent' %}selected{% endif %}>Recent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--column-->
+                    <div class="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
+                        <div class="table-responsive full-data">
+                            <table id="example3" class="display table" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Profile</th>
+                                        <th>User</th>
+                                        <th>Product</th>
+                                        <th>Image</th>
+                                        <th>Quantity</th>
+                                        <th>Total Price</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Payment</th>
+                                        <th>Shipping</th>
+                                        <th>OrderNote</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if orders %}
+                                    {% for i in orders %}
+                                    <tr>
+                                        <td>
+                                            <div class="trans-list">
+                                                {% if i.order.image %}
+                                                <img src="{{ i.order.user.image.url }}" alt="{{ i.user.image.name }}"
+                                                    class="avatar me-3" />
+                                                {% else %}
+                                                <img src="{% static 'admin/images/no-img-avatar.png' %}" alt="No Image"
+                                                    class="avatar me-3" />
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td>{{ i.order.user }}</td>
+                                        <td>{{ i.product.title }}</td>
+                                        <td>
+                                            <div class="trans-list">
+                                                {% if i.product.image %}
+                                                <img src="{{ i.product.image.url }}" alt="{{ i.product.image.title }}"
+                                                    class="avatar me-3" />
+                                                {% else %}
+                                                <img src="{% static 'admin/images/no-img-avatar.png' %}" alt="No Image"
+                                                    class="avatar me-3" />
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td>{{ i.quantity }}</td>
+                                        <td>{{ i.product.disPrice|intcomma }}</td>
+                                        <td>{{ i.order.user.phone }}</td>
+                                        <td>{{ i.order.user.email }}</td>
+                                        <td>{{ i.order.shipping_address }}</td>
+                                        <td>{{ i.order.payment_method }}</td>
+                                        <td>{{ i.order.shipping_method }}</td>
+                                        <td>{{ i.order.order_note }}</td>
+                                        <td>{{ i.created_at }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="">
+                                                    <form action="{% url 'OrderDelete' i.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this todo?')"
+                                                            class="btn btn-danger shadow btn-xs sharp">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr><td>no data</td></tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/column-->
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+					Footer start
+				***********************************-->
+    </div>
+</div>
+
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}

@@ -10,3 +10,28 @@ def AdminDashboard(request):
     }
 
     return render(request,'admin_dashboard.html',context)
+
+def dashboard_view(request):
+    data = [
+        {
+            "name": "BookATables",
+            "count": BookATable.objects.count(),
+            "icon": "user-graduate"
+        },
+        {
+            "name": "Orders",
+            "count": Order.objects.count(),
+            "icon": "chalkboard-teacher"
+        },
+        {
+            "name": "User",
+            "count": User.objects.count(),
+            "icon": "calendar-alt"
+        },
+        {
+            "name": "Product",
+            "count": Product.objects.count(),
+            "icon": "hamburger"
+        },
+    ]
+    return render(request, "admin_dashboard.html", {"dashboard_data": data})

@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block body %}
 
+{% if messages %} 
+  <div id="notification-wrapper" class="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
+    {% for message in messages %} 
 
+        <div class="col-xl-6 offset-xl-3 overflow">
+            <div class="alert alert-primary solid notification-message bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg mb-3 animate-fade-in {{ message.tags }} alert-dismissible fade show">
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()" data-bs-dismiss="alert" aria-label="btn-close"><span><i class="fa-solid fa-xmark"></i></span>
+                </button>
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="mt-1 mb-2 text-white">Notifications</h5>
+                        <p class="mb-0">{{ message }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %} 
+  </div>
+{% endif %}
 
 <!--  -->
 {% for i in CheckOutSlider %}
@@ -23,116 +42,71 @@
 <!--  -->
 <div class="th-checkout-wrapper space-top space-extra-bottom">
     <div class="container">
+        {% if not request.user.is_authenticated %}
         <div class="woocommerce-form-login-toggle">
-            <div class="woocommerce-info">Returning customer? <a href="#" class="showlogin">Click here to login</a>
+            <div class="woocommerce-info">Returning customer? <a href="" class="showlogin">Click here to login</a>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="#" class="woocommerce-form-login mb-30">
-                    <div class="form-group"><label>Username or email *</label> <input type="text" class="form-control"
+                <form action="" method="POST" class="woocommerce-form-login mb-30">
+                    <div class="form-group"><label>Username or email *</label> <input type="text" name="username_or_email" class="form-control"
                             placeholder="Username or email"></div>
-                    <div class="form-group"><label>Password *</label> <input type="text" class="form-control"
+                    <div class="form-group"><label>Password *</label> <input type="text" name="password" class="form-control"
                             placeholder="Password"></div>
                     <div class="form-group">
                         <div class="custom-checkbox"><input type="checkbox" id="remembermylogin"> <label
                                 for="remembermylogin">Remember Me</label></div>
                     </div>
                     <div class="form-group"><button type="submit" class="th-btn rounded-2">Login</button>
-                        <p class="fs-xs mt-2 mb-0"><a class="text-reset" href="#">Lost your password?</a></p>
+                        <p class="fs-xs mt-2 mb-0"><a class="text-reset" href="{% url 'registerPage' %}">Lost your password?</a></p>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="woocommerce-form-coupon-toggle">
-            <div class="woocommerce-info">Have a coupon? <a href="#" class="showcoupon">Click here to enter your
-                    code</a></div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <form action="#" class="woocommerce-form-coupon">
-                    <div class="form-group"><label>Coupon code</label> <input type="text" class="form-control"
-                            placeholder="Write your coupon code"></div>
-                    <div class="form-group"><button type="submit" class="th-btn rounded-2">Apply coupon</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <form action="#" class="woocommerce-checkout mt-40">
+        {% endif %}
             <div class="row">
-                <div class="col-lg-6">
+<form action="{% url 'checkout' %}" method="POST">
+                {% csrf_token %}
                     <h2 class="h4">Billing Details</h2>
+                <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-12 form-group"><select class="form-select">
-                                <option>United Kingdom (UK)</option>
-                                <option>United State (US)</option>
-                                <option>Equatorial Guinea (GQ)</option>
-                                <option>Australia (AU)</option>
-                                <option>Germany (DE)</option>
-                            </select></div>
-                        <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                placeholder="First Name"></div>
-                        <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                placeholder="Last Name"></div>
-                        <div class="col-12 form-group"><input type="text" class="form-control"
-                                placeholder="Your Company Name"></div>
-                        <div class="col-12 form-group"><input type="text" class="form-control"
-                                placeholder="Street Address"> <input type="text" class="form-control"
-                                placeholder="Apartment, suite, unit etc. (optional)"></div>
-                        <div class="col-12 form-group"><input type="text" class="form-control"
-                                placeholder="Town / City"></div>
-                        <div class="col-md-6 form-group"><input type="text" class="form-control" placeholder="Country">
-                        </div>
-                        <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                placeholder="Postcode / Zip"></div>
-                        <div class="col-12 form-group"><input type="text" class="form-control"
-                                placeholder="Email Address"> <input type="text" class="form-control"
-                                placeholder="Phone number"></div>
-                        <div class="col-12 form-group"><input type="checkbox" id="accountNewCreate"> <label
-                                for="accountNewCreate">Create An Account?</label></div>
+                            <div class="col-6 form-group">
+                                <label for="">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Full Name" name="full_name" value="{{ user.username }}" required>
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="">Email Address</label>
+                                <input type="text" class="form-control" placeholder="Email Address" name="email" value="{{ user.email }}" required> 
+                            </div>
+                            <div class="col-6 form-group"> 
+                                <label for="">Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Phone number" name="phone" value="{{ user.phone }}" required>
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="">Address</label>
+                                <input type="text" class="form-control" placeholder="Address" name="address" value="{{ user.address }}" required> 
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="">Town / City</label>
+                                <input type="text" class="form-control" placeholder="Town / City" name="city" value="{{ user.city }}" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="">Country</label>
+                                <input type="text" class="form-control" placeholder="Country" name="country" value="{{ user.country }}" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="">Postcode / Zip</label>
+                                <input type="text" class="form-control" placeholder="Postcode / Zip" name="postal_code" value="{{ user.postal_code }}" required>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="">Order Note</label>
+                                <textarea cols="20" rows="5" name="order_note" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                            </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <p id="ship-to-different-address"><input id="ship-to-different-address-checkbox" type="checkbox"
-                            name="ship_to_different_address" value="1" checked="checked"> <label
-                            for="ship-to-different-address-checkbox">Ship to a different address? <span
-                                class="checkmark"></span></label></p>
-                    <div class="shipping_address">
-                        <div class="row">
-                            <div class="col-12 form-group"><select class="form-select">
-                                    <option>United Kingdom (UK)</option>
-                                    <option>United State (US)</option>
-                                    <option>Equatorial Guinea (GQ)</option>
-                                    <option>Australia (AU)</option>
-                                    <option>Germany (DE)</option>
-                                </select></div>
-                            <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                    placeholder="First Name"></div>
-                            <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                    placeholder="Last Name"></div>
-                            <div class="col-12 form-group"><input type="text" class="form-control"
-                                    placeholder="Your Company Name"></div>
-                            <div class="col-12 form-group"><input type="text" class="form-control"
-                                    placeholder="Street Address"> <input type="text" class="form-control"
-                                    placeholder="Apartment, suite, unit etc. (optional)"></div>
-                            <div class="col-12 form-group"><input type="text" class="form-control"
-                                    placeholder="Town / City"></div>
-                            <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                    placeholder="Country"></div>
-                            <div class="col-md-6 form-group"><input type="text" class="form-control"
-                                    placeholder="Postcode / Zip"></div>
-                            <div class="col-12 form-group"><input type="text" class="form-control"
-                                    placeholder="Email Address"> <input type="text" class="form-control"
-                                    placeholder="Phone number"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 form-group"><textarea cols="20" rows="5" class="form-control"
-                            placeholder="Notes about your order, e.g. special notes for delivery."></textarea></div>
                 </div>
             </div>
-        </form>
         <h4 class="mt-4 pt-lg-2">Your Order</h4>
-        <form action="#" class="woocommerce-cart-form">
             <table class="cart_table mb-20">
                 <thead>
                     <tr>
@@ -144,59 +118,86 @@
                     </tr>
                 </thead>
                 <tbody>
+    {% for item in cart_items %}
                     <tr class="cart_item">
-                        <td data-title="Product"><a class="cart-productimage" href="{% url 'shopDetailPage' %}"><img width="91"
-                                    height="91" src="{% static 'assets/img/menu/menu_thumb_1_1.png' %}" alt="Image"></a>
+                        <td data-title="Product">
+                            <a class="cart-productimage" href="">
+                                <img width="91" height="91" src="{{ item.product.image.url }}" alt="Image">
+                            </a>
                         </td>
-                        <td data-title="Name"><a class="cart-productname" href="{% url 'shopDetailPage' %}">Chicken
-                                Vagetable</a></td>
-                        <td data-title="Price"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
-                        <td data-title="Quantity"><strong class="product-quantity">01</strong></td>
-                        <td data-title="Total"><span class="amount"><bdi><span>$</span>18</bdi></span></td>
+                        <td data-title="Name">
+                            <a class="cart-productname" href="">{{ item.product.title }}</a></td>
+                        <td data-title="Price">
+                            <span class="amount"><bdi><span>$</span>{{ item.product.disPrice|intcomma }}</bdi></span>
+                        </td>
+                        <td data-title="Quantity">
+                            <strong class="product-quantity">{{ item.quantity }}</strong>
+                        </td>
+                        <td data-title="Total">
+                            <span class="amount"><bdi><span>$</span>{{ item.total_price|intcomma }}</bdi></span>
+                        </td>
                     </tr>
+    {% endfor %}
                 </tbody>
                 <tfoot class="checkout-ordertable">
                     <tr class="cart-subtotal">
                         <th>Subtotal</th>
                         <td data-title="Subtotal" colspan="4"><span class="woocommerce-Price-amount amount"><bdi><span
-                                        class="woocommerce-Price-currencySymbol">$</span>281.05</bdi></span></td>
+                                        class="woocommerce-Price-currencySymbol">$</span>{{ total|intcomma }}</bdi></span></td>
                     </tr>
                     <tr class="woocommerce-shipping-totals shipping">
                         <th>Shipping</th>
-                        <td data-title="Shipping" colspan="4">Enter your address to view shipping options.</td>
+                        <td data-title="Shipping" colspan="4">
+                            <ul class="woocommerce-shipping-methods list-unstyled">
+                                <li>
+                                    <input type="radio" id="free_shipping" name="shipping_method" class="shipping_method" value="free" checked> 
+                                    <label for="free_shipping">Free shipping</label></li>
+                                <li><input type="radio" id="flat_rate" name="shipping_method" class="shipping_method" value="flat"> 
+                                    <label for="flat_rate">Flat rate</label>
+                                </li>
+                            </ul>
+                            <p class="woocommerce-shipping-destination">Shipping options will be updated during checkout.</p>
+                        </td>
                     </tr>
                     <tr class="order-total">
                         <th>Total</th>
                         <td data-title="Total" colspan="4"><strong><span
                                     class="woocommerce-Price-amount amount"><bdi><span
-                                            class="woocommerce-Price-currencySymbol">$</span>281.05</bdi></span></strong>
+                                            class="woocommerce-Price-currencySymbol">$</span>{{ total|intcomma }}</bdi></span></strong>
                         </td>
                     </tr>
                 </tfoot>
             </table>
-        </form>
         <div class="mt-lg-3 mb-30">
             <div class="woocommerce-checkout-payment">
                 <ul class="wc_payment_methods payment_methods methods">
-                    <li class="wc_payment_method payment_method_bacs"><input id="payment_method_bacs" type="radio"
-                            class="input-radio" name="payment_method" value="bacs" checked="checked"> <label
-                            for="payment_method_bacs">Direct bank transfer</label>
-                        <div class="payment_box payment_method_bacs">
+                    <li class="wc_payment_method payment_method_bacs"><input id="payment_method_bank" type="radio"
+                            class="input-radio" name="payment_method" value="bank" checked> <label
+                            for="payment_method_bank">Direct bank transfer</label>
+                        <div class="payment_box payment_method_bank">
                             <p>Make your payment directly into our bank account. Please use your Order ID as the
                                 payment reference. Your order will not be shipped until the funds have cleared in
                                 our account.</p>
                         </div>
                     </li>
-                    <li class="wc_payment_method payment_method_cheque"><input id="payment_method_cheque" type="radio"
-                            class="input-radio" name="payment_method" value="cheque"> <label
-                            for="payment_method_cheque">Cheque Payment</label>
-                        <div class="payment_box payment_method_cheque">
+                    <li class="wc_payment_method payment_method_wave"><input id="payment_method_wave" type="radio"
+                            class="input-radio" name="payment_method" value="wave"> <label
+                            for="payment_method_wave">WaveMoney Payment</label>
+                        <div class="payment_box payment_method_wave">
+                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
+                                Store Postcode.</p>
+                        </div>
+                    </li>
+                    <li class="wc_payment_method payment_method_kpay"><input id="payment_method_kpay" type="radio"
+                            class="input-radio" name="payment_method" value="kPay"> <label
+                            for="payment_method_kpay">Kpay Payment</label>
+                        <div class="payment_box payment_method_kpay">
                             <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
                                 Store Postcode.</p>
                         </div>
                     </li>
                     <li class="wc_payment_method payment_method_cod"><input id="payment_method_cod" type="radio"
-                            class="input-radio" name="payment_method"> <label for="payment_method_cod">Credit
+                            class="input-radio" name="payment_method" value="card"> <label for="payment_method_cod">Credit
                             Cart</label>
                         <div class="payment_box payment_method_cod">
                             <p>Pay with cash upon delivery.</p>
@@ -211,9 +212,9 @@
                         </div>
                     </li>
                 </ul>
-                <div class="form-row place-order"><button type="submit" class="th-btn rounded-2">Place
-                        order</button></div>
+                <div class="form-row place-order"><button type="submit" class="th-btn rounded-2">Place order</button></div>
             </div>
+</form>
         </div>
     </div>
 </div>

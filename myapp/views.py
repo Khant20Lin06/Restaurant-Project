@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password, ValidationError
+from .forms import CommentForm
 
 
 User = get_user_model()
@@ -51,8 +52,10 @@ def HomePage(request):
     category6 = CategoryModel.objects.get(name='Sea Food')
     products6 = Product.objects.filter(category=category6)
     Contact = ContactModel.objects.all()
+    bookATable = BookATable.objects.all()
     #
-
+    for p in Promotion:
+        p.check_expiry()
     #
     context = {
         'MainSlider': MainSlider,
@@ -83,6 +86,7 @@ def HomePage(request):
         'products5': products5,
         'products6': products6,
         'Contact': Contact,
+        'bookATable': bookATable,
     }
     return render(request, 'index.html', context)
 
@@ -184,29 +188,59 @@ def NewPage(request):
     }
     return render(request, 'new.html', context)
 
+def comment_list(request):
+    comments = CommentModel.objects.filter(parent=None).order_by('-created_at')
+    comment_count = CommentModel.objects.all().count()
+
+    context = {
+        'comments': comments,
+        'comment_count': comment_count
+    }
+    return render(request, 'newDetail.html', context)
+
+def post_comment(request, parent_id=None):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            if parent_id:
+                comment.parent = get_object_or_404(CommentModel, id=parent_id)
+            comment.save()
+            return redirect('newDetailPage')
+    else:
+        form = CommentForm()
+
+    comments = CommentModel.objects.filter(parent=None).order_by('-created_at')
+    comment_count = CommentModel.objects.all().count()
+    return render(request, 'newDetail.html', {'form': form, 'comments': comments, 'comment_count': comment_count})
 
 def NewDetailPage(request):
     NewDetailSlider = NewDetailSliderModel.objects.all()
     NewDetailTag = NewDetailTagModel.objects.all()
     NewDetail = NewDetailModel.objects.all()
-    Comment = CommentModel.objects.all()
+    Comments = CommentModel.objects.filter(parent=None).order_by('-created_at')
     CommentCount = CommentModel.objects.all().count()
     tag = Tag.objects.all()
     Profile = ProfileModel.objects.all()
     Post = PostModel.objects.all()
     Gallery = GalleryModel.objects.all()
+    form = CommentForm()
     context = {
         'NewDetailSlider': NewDetailSlider,
         'NewDetailTag': NewDetailTag,
         'NewDetail': NewDetail,
-        'Comment': Comment,
+        'Comments': Comments,
         'CommentCount': CommentCount,
+        'form': form,
         'tag': tag,
         'Profile': Profile,
         'Gallery': Gallery,
         'Post': Post,
     }
     return render(request, 'newDetail.html', context)
+
+
 
 
 def ContactPage(request):
@@ -307,11 +341,17 @@ def CheckOutPage(request):
 
 @login_required
 def cart_page(request):
+    CartSlider = CartSliderModel.objects.all()[:1]
+    Gallery = GalleryModel.objects.all()
     cart_items = CartItem.objects.filter(user=request.user)
-    cart_total = sum(item.total_price() for item in cart_items)
+    CartItemCount = CartItem.objects.all().count()
+    cart_total = sum(item.total_price for item in cart_items)
     context = {
+        'CartSlider': CartSlider,
+        'Gallery': Gallery,
         'cart_items': cart_items,
         'cart_total': cart_total,
+        'CartItemCount': CartItemCount,
     }
     return render(request, 'cart.html', context)
 
@@ -319,25 +359,40 @@ def cart_page(request):
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    # Check if the user is logged in
     if not request.user.is_authenticated:
-        return redirect('loginPage')  # change this to your login URL name
+        return redirect('loginPage')  
+    
+    if request.method == 'POST':
+        qty = request.POST.get('quantity')
+        try:
+            qty = int(qty) if qty else 1
+            if qty < 1:
+                qty = 1
+        except ValueError:
+            qty = 1
 
-    # Get or create a cart item for this user & product
-    cart_item, created = CartItem.objects.get_or_create(
-        user=request.user,
-        product=product
-    )
+        cart_items, created = CartItem.objects.get_or_create(
+            user=request.user,
+            product=product,
+            defaults={'quantity': qty}
+        )
 
-    if not created:
-        cart_item.quantity += 1
-        cart_item.save()
+        if not created:
+            cart_items.quantity = qty
+            cart_items.save()
+
+    else:
+
+        cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
 
     return redirect('cartPage')
 
 @login_required
 def remove_from_cart(request, cart_item_id):
-    item = CartItem.objects.get(id=cart_item_id)
+    item = get_object_or_404(CartItem, id=cart_item_id, user=request.user)
     item.delete()
     return redirect('cartPage')
 
@@ -453,3 +508,134 @@ def RegisterPage(request):
         return redirect('homePage') 
 
     return render(request, 'register.html')
+
+@login_required
+def checkout_view(request):
+    user = request.user
+    cart_items = CartItem.objects.filter(user=user)
+    total = sum(item.product.price * item.quantity for item in cart_items)
+    CheckOutSlider = CheckOutSliderModel.objects.all()[:1]
+    Gallery = GalleryModel.objects.all()
+
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        country = request.POST.get('country')
+        postal_code = request.POST.get('postal_code')
+
+        if not all([full_name, email, phone, address, city, country, postal_code]):
+            messages.error(request, "Please fill out all required fields before submitting.")
+            return redirect('checkout')  
+
+        order_note = request.POST.get('order_note', '')
+        shipping_method = request.POST.get('shipping_method')
+        payment_method = request.POST.get('payment_method')
+
+        address_full = f"{address}, {city}, {country}, {postal_code}"
+
+
+        order = Order.objects.create(
+            user=user,
+            shipping_method=shipping_method,
+            shipping_address=address,
+            payment_method=payment_method,
+            order_note=order_note,
+            total_amount=total
+        )
+        
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,
+                price=item.product.disPrice
+            )
+
+        cart_items.delete()
+
+        messages.success(request, "Your order has been placed successfully!")
+        return redirect('order_success')
+
+    context = {
+        'cart_items': cart_items,
+        'total': total,
+        'user': user,
+        'CheckOutSlider': CheckOutSlider,
+        'Gallery': Gallery,
+    }
+    return render(request, 'checkout.html', context)
+
+@login_required
+def order_success_view(request):
+    user =request.user
+    try:
+        order = Order.objects.filter(user=user).order_by('-order_date')
+    except Order.DoesNotExist:
+        messages.error(request, "Order not found.")
+        return redirect('homePage')
+
+    CheckOutSlider = CheckOutSliderModel.objects.all()[:1]
+    Gallery = GalleryModel.objects.all()
+    context = {
+        'orders': order,
+        'CheckOutSlider': CheckOutSlider,
+        'Gallery': Gallery,
+    }
+    return render(request, 'order_success.html', context)
+
+
+@login_required
+def delete_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order.delete()
+    messages.success(request, "Order has been deleted successfully!")
+    return redirect('order_success')
+
+@login_required
+def delete_all_orders(request):
+    Order.objects.filter(user=request.user).delete()
+    messages.success(request, "All orders have been deleted!")
+    return redirect('order_success')
+
+def book_a_table_view(request):
+    user =request.user
+    if request.method == "POST":
+        date = request.POST.get("date")
+        time = request.POST.get("time")
+        guest = request.POST.get("guest")
+        message = request.POST.get("message")
+
+        if not date or not time or not guest:
+            messages.error(request, "Please fill in all required fields.")
+            return redirect("book_a_table")
+
+        BookATable.objects.create(
+            user=user,
+            date=date,
+            time=time,
+            guest=guest,
+            message=message
+        )
+
+        messages.success(request, "Your table has been booked successfully!")
+        return redirect("homePage")
+
+    return render(request, "index.html")
+
+def search_view(request):
+    CartItemCount = CartItem.objects.all().count()
+    query = request.GET.get('q')  
+    results = []
+
+    if query:
+        results = Product.objects.filter(title__icontains=query)  
+
+    context = {
+        'query': query,
+        'results': results,
+        'CartItemCount': CartItemCount,
+    }
+    return render(request, 'header.html', context)

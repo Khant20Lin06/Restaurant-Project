@@ -5,16 +5,20 @@
 		<div class="dlabnav">
 			<div class="dlabnav-scroll">
 				<ul class="metismenu" id="menu">
-					<li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+					<li><a class="" href="{% url 'admin_dashboard' %}" aria-expanded="false">
 							<i class="material-symbols-outlined">home</i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-						<ul aria-expanded="false">
-							<li><a href="index.html">Dashboard Light</a></li>
-							<li><a href="index-2.html">Dashboard Dark</a></li>
-							<li><a href="finance.html">Finance</a></li>
-						</ul>
-
+					</li>
+					<li><a class=" " href="{% url 'OrderList' %}" aria-expanded="false">
+							<i class="material-symbols-outlined">table_chart</i>
+							<span class="nav-text">Order List</span>
+						</a>
+					</li>
+					<li><a class=" " href="{% url 'bookATableList' %}" aria-expanded="false">
+							<i class="material-symbols-outlined">table_chart</i>
+							<span class="nav-text">BookTable List</span>
+						</a>
 					</li>
 					<li><a class=" " href="{% url 'CategoryList' %}" aria-expanded="false">
 							<i class="material-symbols-outlined">category</i>
@@ -39,6 +43,7 @@
 							<li><a href="{% url 'MainSliderList' %}">MainSlider</a></li>
 							<li><a href="{% url 'AboutList' %}">About</a></li>
 							<li><a href="{% url 'AboutItemList' %}">AboutItem</a></li>
+							<li><a href="{% url 'PromotionList' %}">Promotion</a></li>
 
 						</ul>
 

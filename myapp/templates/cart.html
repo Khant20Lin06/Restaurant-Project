@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block body %}
 
@@ -26,7 +27,7 @@
         <div class="woocommerce-notices-wrapper">
             <div class="woocommerce-message">Shipping costs updated.</div>
         </div>
-        <form action="#" class="woocommerce-cart-form">
+        {% if cart_items %}
             <table class="cart_table">
                 <thead>
                     <tr>
@@ -39,37 +40,56 @@
                     </tr>
                 </thead>
                 <tbody>
-    {% for item in cart_items %}
+                {% for item in cart_items %}
                     <tr class="cart_item">
-                        <td data-title="Product"><a class="cart-productimage" href="shop-detailis.html"><img width="91"
-                                    height="91" src="{{ item.product.img.url }}" alt="{{ item.product.title }}"></a>
+                        <td data-title="Product">
+                            <a class="cart-productimage" href="shop_detail.html">
+                                <img width="91" height="91" src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                            </a>
                         </td>
-                        <td data-title="Name"><a class="cart-productname" href="shop-detailis.html">{{ item.product.title }}</a></td>
-                        <td data-title="Price"><span class="amount"><bdi><span>$</span>{{ item.product.disPrice }}</bdi></span></td>
+
+                        <td data-title="Name">
+                            <a class="cart-productname" href="shop_detail.html">{{ item.product.title }}</a>
+                        </td>
+
+                        <td data-title="Price">
+                            <span class="amount">${{ item.product.disPrice|intcomma }}</span>
+                        </td>
+
                         <td data-title="Quantity">
                             <div class="quantity">
-                                <form method="post" action="{% url 'addToCart' item.product.id %}">
+                                <form method="post" action="{% url 'add_to_cart' item.product.id %}">
                                     {% csrf_token %}
-                                    <input type="number" name="quantity" class="qty-input" value="{{ item.quantity }}" min="1">
-                                    <button type="submit" class="qty-btn">Update</button>
+                                    <button class="quantity-minus qty-btn"><i class="far fa-minus"></i></button>
+                                    <input type="number" name="quantity" class="qty-input" value="{{ item.quantity }}" min="1" max="99">
+                                    <button type="submit" class="quantity-plus qty-btn"><i class="far fa-plus"></i></button>
                                 </form>
                             </div>
                         </td>
-                        <td data-title="Total"><span class="amount"><bdi><span>$</span>{{ item.total_price }}</bdi></span></td>
-                        <td data-title="Remove"><a href="{% url 'removeFromCart' item.id %}" class="remove"><i class="fal fa-trash-alt"></i></a></td>
+
+                        <td data-title="Total">
+                            <span class="amount">${{ item.total_price|floatformat:2|intcomma }}</span>
+                        </td>
+                        <td data-title="Remove">
+                            <a href="{% url 'removeFromCart' item.id %}" class="remove">
+                                <i class="fal fa-trash-alt"></i>
+                            </a>
+                        </td>
                     </tr>
-    {% endfor %}
+                {% endfor %}
                     <tr>
                         <td colspan="6" class="actions">
-                            <div class="th-cart-coupon"><input type="text" class="form-control"
-                                    placeholder="Coupon Code..."> <button type="submit" class="th-btn rounded-2">Apply
-                                    Coupon</button></div><button type="submit" class="th-btn rounded-2">Update
-                                cart</button> <a href="{% url 'shopPage' %}" class="th-btn rounded-2">Continue Shopping</a>
+                            <a href="{% url 'shopPage' %}" class="th-btn rounded-2">Continue Shopping</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </form>
+
+        {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">Your cart is empty</td>
+                    </tr>
+        {% endif %}
         <div class="row justify-content-end">
             <div class="col-md-8 col-lg-7 col-xl-6">
                 <h2 class="h4 summary-title">Cart Totals</h2>
@@ -77,7 +97,7 @@
                     <tbody>
                         <tr>
                             <td>Cart Subtotal</td>
-                            <td data-title="Cart Subtotal"><span class="amount"><bdi><span>$</span>47</bdi></span>
+                            <td data-title="Cart Subtotal"><span class="amount"><bdi><span>$</span>{{ cart_total|floatformat:2|intcomma }}</bdi></span>
                             </td>
                         </tr>
                         <tr class="shipping">
@@ -91,30 +111,6 @@
                                             class="shipping_method" checked="checked"> <label for="flat_rate">Flat
                                             rate</label></li>
                                 </ul>
-                                <p class="woocommerce-shipping-destination">Shipping options will be updated during
-                                    checkout.</p>
-                                <form action="#" method="post"><a href="#" class="shipping-calculator-button">Change
-                                        address</a>
-                                    <div class="shipping-calculator-form">
-                                        <p class="form-row"><select class="form-select">
-                                                <option value="AR">Argentina</option>
-                                                <option value="AM">Armenia</option>
-                                                <option value="BD" selected="selected">Bangladesh</option>
-                                            </select></p>
-                                        <p><select class="form-select">
-                                                <option value="">Select an option…</option>
-                                                <option value="BD-05">Bagerhat</option>
-                                                <option value="BD-01">Bandarban</option>
-                                                <option value="BD-02">Barguna</option>
-                                                <option value="BD-06">Barishal</option>
-                                            </select></p>
-                                        <p class="form-row"><input type="text" class="form-control"
-                                                placeholder="Town / City"></p>
-                                        <p class="form-row"><input type="text" class="form-control"
-                                                placeholder="Postcode / ZIP"></p>
-                                        <p><button class="th-btn rounded-2">Update</button></p>
-                                    </div>
-                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -122,11 +118,11 @@
                         <tr class="order-total">
                             <td>Order Total</td>
                             <td data-title="Total"><strong><span
-                                        class="amount"><bdi><span>$</span>47</bdi></span></strong></td>
+                                        class="amount"><bdi><span>$</span>{{ cart_total|floatformat:2|intcomma }}</bdi></span></strong></td>
                         </tr>
                     </tfoot>
                 </table>
-                <div class="wc-proceed-to-checkout mb-30"><a href="{% url 'checkOutPage' %}" class="th-btn rounded-2">Proceed
+                <div class="wc-proceed-to-checkout mb-30"><a href="{% url 'checkout' %}" class="th-btn rounded-2">Proceed
                         to checkout</a></div>
             </div>
         </div>

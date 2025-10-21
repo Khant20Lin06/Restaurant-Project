@@ -1,8 +1,16 @@
 from django.urls import path 
-from .views import views,mainSlider,category,product,productDetail,about,aboutItem
+from .views import views,mainSlider,category,product,productDetail,about,aboutItem,order,promotion,bookTable
 
 urlpatterns = [
     path('', views.AdminDashboard, name="admin_dashboard"),
+
+    # Order
+    path('orderList/', order.OrderList, name="OrderList"),
+    path('orderDelete/delete/<int:pk>/', order.OrderDelete, name="OrderDelete"),
+
+    # BookATable
+    path('bookATableList/', bookTable.BookATableList, name="bookATableList"),
+    path('bookATableDelete/delete/<int:pk>/', bookTable.BookATableDelete, name="bookATableDelete"),
 
     # MainSlider
     path('mainsliderlist/', mainSlider.MainSliderList, name="MainSliderList"),
@@ -45,4 +53,11 @@ urlpatterns = [
     path('aboutItemUpdate/update/<uuid:pk>/', aboutItem.AboutItemUpdate, name="AboutItemUpdate"),
     path('aboutItemDetail/detail/<uuid:pk>/', aboutItem.AboutItemDetail, name="AboutItemDetail"),
     path('aboutItemDelete/delete/<uuid:pk>/', aboutItem.AboutItemDelete, name="AboutItemDelete"),
+
+    # Promotion
+    path('promotionList/', promotion.PromotionList, name="PromotionList"),
+    path('promotionCreate/', promotion.PromotionCreate, name="PromotionCreate"),
+    path('promotionUpdate/update/<uuid:pk>/', promotion.PromotionUpdate, name="PromotionUpdate"),
+    path('promotionDetail/detail/<uuid:pk>/', promotion.PromotionDetail, name="PromotionDetail"),
+    path('promotionDelete/delete/<uuid:pk>/', promotion.PromotionDelete, name="PromotionDelete"),
 ]

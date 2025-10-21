@@ -38,13 +38,20 @@ class CartItemAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'quantity', 'total_price')
 
     def total_price(self, obj):
-            return obj.total_price()
+            return obj.total_price
     total_price.short_description = 'Total Price'
 
+@admin.register(BookATable)
+class BookATableAdmin(admin.ModelAdmin):
+    list_display = ('date', 'time', 'guest', 'created_at')
+    list_filter = ('date',)
+    
 ###############################
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Profile)
+admin.site.register(OrderItem)
+admin.site.register(Order)
 
 
 

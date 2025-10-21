@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <div class="preloader"><button class="th-btn style3 preloaderCls">Cancel Preloader</button>
     <div class="preloader-inner"><span class="loader"></span></div>
 </div>
@@ -100,47 +101,32 @@
             <h3 class="widget_title">Shopping cart</h3>
             <div class="widget_shopping_cart_content">
                 <ul class="woocommerce-mini-cart cart_list product_list_widget">
-                    <li class="woocommerce-mini-cart-item mini_cart_item"><a href="#"
-                            class="remove remove_from_cart_button"><i class="far fa-times"></i></a> <a href="#"><img
-                                src="{% static 'assets/img/menu/menu_thumb_1_1.png' %}" alt="Cart Image">Daria
-                            Shevtsova</a> <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span
-                                    class="woocommerce-Price-currencySymbol">$</span>40.00</span></span></li>
-                    <li class="woocommerce-mini-cart-item mini_cart_item"><a href="#"
-                            class="remove remove_from_cart_button"><i class="far fa-times"></i></a> <a href="#"><img
-                                src="{% static 'assets/img/menu/menu_thumb_1_2.png' %}" alt="Cart Image">Chicken
-                            Masala</a> <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span
-                                    class="woocommerce-Price-currencySymbol">$</span>99.00</span></span></li>
-                    <li class="woocommerce-mini-cart-item mini_cart_item"><a href="#"
-                            class="remove remove_from_cart_button"><i class="far fa-times"></i></a> <a href="#"><img
-                                src="{% static 'assets/img/menu/menu_thumb_1_3.png' %}" alt="Cart Image">Sicilian
-                            Pizza</a> <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span
-                                    class="woocommerce-Price-currencySymbol">$</span>56.00</span></span></li>
-                    <li class="woocommerce-mini-cart-item mini_cart_item"><a href="#"
-                            class="remove remove_from_cart_button"><i class="far fa-times"></i></a> <a href="#"><img
-                                src="{% static 'assets/img/menu/menu_thumb_1_4.png' %}" alt="Cart Image">Beef Masala</a>
-                        <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span
-                                    class="woocommerce-Price-currencySymbol">$</span>23.00</span></span>
+                {% for item in cart_items %}
+                    <li class="woocommerce-mini-cart-item mini_cart_item">
+                        <a href="" class="remove remove_from_cart_button"><i class="far fa-times"></i></a> 
+                        <a href="#"><img src="{{ item.product.image.url }}" alt="Cart Image">{{ item.product.title }}</a> 
+                        <span class="quantity">{{ item.quantity }} × <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">$</span>{{ item.product.disPrice|intcomma }}</span></span>
                     </li>
-                    <li class="woocommerce-mini-cart-item mini_cart_item"><a href="#"
-                            class="remove remove_from_cart_button"><i class="far fa-times"></i></a> <a href="#"><img
-                                src="{% static 'assets/img/menu/menu_thumb_1_5.png' %}" alt="Cart Image">Martin
-                            Widenka</a> <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span
-                                    class="woocommerce-Price-currencySymbol">$</span>100.00</span></span></li>
+                {% endfor %}
                 </ul>
                 <p class="woocommerce-mini-cart__total total"><strong>Subtotal:</strong> <span
                         class="woocommerce-Price-amount amount"><span
-                            class="woocommerce-Price-currencySymbol">$</span>318.00</span></p>
+                            class="woocommerce-Price-currencySymbol">$</span>{{ item.total_price|floatformat:2|intcomma }}</span></p>
                 <p class="woocommerce-mini-cart__buttons buttons"><a href="{% url 'cartPage' %}"
                         class="th-btn wc-forward">View
-                        cart</a> <a href="{% url 'checkOutPage' %}" class="th-btn checkout wc-forward">Checkout</a></p>
+                        cart</a> <a href="{% url 'checkout' %}" class="th-btn checkout wc-forward">Checkout</a></p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="popup-search-box d-none d-lg-block"><button class="searchClose"><i class="fal fa-times"></i></button>
-    <form action="#"><input type="text" placeholder="What are you looking for?"> <button type="submit"><i
-                class="fal fa-search"></i></button></form>
+<div class="popup-search-box d-none d-lg-block">
+    <button class="searchClose"><i class="fal fa-times"></i></button>
+    <form action="" method="GET">
+        <input type="text" name="q" placeholder="What are you looking for?">
+        <button type="submit"><a href="{% url 'shopPage' %}"><i class="fal fa-search"></i></a></button>
+    </form>
 </div>
 
 <div class="th-menu-wrapper">
@@ -198,7 +184,7 @@
                                 <button type="button" class="icon-btn searchBoxToggler"><i
                                         class="far fa-search"></i></button>
                                 <button type="button" class="icon-btn sideMenuToggler d-none d-xl-block"><i
-                                        class="far fa-cart-shopping"></i> <span class="badge">5</span></button>
+                                        class="far fa-cart-shopping"></i> <span class="badge">{{ CartItemCount }}</span></button>
 
                                 <!-- Header with Profile Button -->
                                 <div class="flex justify-end mb-1">

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+{% if messages %} 
+  <div id="notification-wrapper" class="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
+    {% for message in messages %} 
+
+        <div class="col-xl-6 offset-xl-3 overflow">
+            <div class="alert alert-primary solid notification-message bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg mb-3 animate-fade-in {{ message.tags }} alert-dismissible fade show">
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()" data-bs-dismiss="alert" aria-label="btn-close"><span><i class="fa-solid fa-xmark"></i></span>
+                </button>
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="mt-1 mb-2 text-white">Notifications</h5>
+                        <p class="mb-0">{{ message }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %} 
+  </div>
+{% endif %}
+
+<!--  -->
+{% for i in CheckOutSlider %}
+<div class="breadcumb-wrapper" data-bg-src="{{ i.image.url }}">
+    <div class="container z-index-common">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Order Success</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'homePage' %}">Home</a></li>
+                <li>Order Success</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!--  -->
+<div class="th-cart-wrapper space-top space-extra-bottom">
+    <div class="container">
+        <div class="woocommerce-notices-wrapper">
+            <div class="woocommerce-message">Order Success
+            </div>
+        </div>
+            <table class="cart_table">
+                <thead>
+                    <tr>
+                        <th class="cart-col-image">Image</th>
+                        <th class="cart-col-productname">Product Name</th>
+                        <th class="cart-col-price">Price</th>
+                        <th class="cart-col-quantity">Quantity</th>
+                        <th class="cart-col-total">Total</th>
+                        <th class="cart-col-remove">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for order in orders %}
+        {% if order.items.all %}
+                {% for item in order.items.all %}
+                    <tr class="cart_item">
+                        <td data-title="Product">
+                            <a class="cart-productimage" href="">
+                                <img width="91" height="91" src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                            </a>
+                        </td>
+
+                        <td data-title="Name">
+                            <a class="cart-productname" href="">{{ item.product.title }}</a>
+                        </td>
+
+                        <td data-title="Price">
+                            <span class="amount">${{ item.product.disPrice|intcomma }}</span>
+                        </td>
+
+                        <td data-title="Quantity">
+                            <div class="quantity">
+                                <span class="amount ps-5">{{ item.quantity }}</span>
+                            </div>
+                        </td>
+
+                        <td data-title="Total">
+                            <span class="amount">${{ item.get_total|floatformat:2 }}</span>
+                        </td>
+                        <td data-title="Remove">
+                            <a href="{% url 'delete_order' order.id %}" class="remove">
+                                <i class="fal fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+        {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">Your order success is empty</td>
+                    </tr>
+        {% endif %}
+{% endfor %}
+                </tbody>
+                <tfoot class="checkout-ordertable">
+                    <tr>
+                        <td colspan="6" class="actions">
+                            <a href="{% url 'delete_all_orders' %}" class="th-btn rounded-2" onclick="return confirm('Are you sure you want to delete all orders?');">
+                                Delete All Orders
+                            </a>
+                            <a href="{% url 'shopPage' %}" class="th-btn rounded-2">Continue Shopping</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+    </div>
+</div>
+
+<!--  -->
+<div class="gallery-thumb-area">
+    <div class="row gx-10 th-carousel" id="gallerySlide1" data-slide-show="8" data-ml-slide-show="7"
+        data-lg-slide-show="6" data-md-slide-show="5" data-sm-slide-show="4" data-xs-slide-show="3"
+        data-focuson-select="false">
+        {% for i in Gallery %}
+        <div class="col-auto">
+            <div class="gallery-thumb"><img src="{{ i.image.url }}" alt="Gallery Image"> <a href="{{ i.image.url }}"
+                    class="gallery-btn popup-image"><i class="fab fa-instagram"></i></a></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

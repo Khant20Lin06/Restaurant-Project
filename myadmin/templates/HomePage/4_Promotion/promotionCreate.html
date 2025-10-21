@@ -1,0 +1,115 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Main Slider</h5>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Into1
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="into1" value="{% if mainSlider %}{{ mainSlider.into1 }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Into1">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Into2
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="into2" value="{% if mainSlider %}{{ mainSlider.into2 }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Into2">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Into3
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="into3" value="{% if mainSlider %}{{ mainSlider.into3 }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Into3">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Into4
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="into4" value="{% if mainSlider %}{{ mainSlider.into4 }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Into4">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Order
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="order" value="{% if mainSlider %}{{ mainSlider.order }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Order">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Menu
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="menu" value="{% if mainSlider %}{{ mainSlider.menu }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Menu">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label text-primary">Num
+                                        <span class="required">*</span></label>
+                                    <input type="text" name="num" value="{% if mainSlider %}{{ mainSlider.num }}{% endif %}" class="form-control" id="exampleFormControlInput9"
+                                        placeholder="Num">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-primary">Photo<span class="required">*</span></label>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            {% if mainSlider.bgImage %}
+                                                <div id="imagePreview" style="background-image: url('{{ mainSlider.bgImage.url }}');"></div>
+                                            {% else %}
+                                                <div id="imagePreview" style="background-image: url('{% static "admin/images/no-img-avatar.png" %}');"></div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="change-btn mt-1">
+                                            <input type='file' name="bgImage"
+                                            class="form-control d-none" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                            <label for="imageUpload"
+                                                class="dlab-upload mb-0 btn btn-primary btn-sm">Choose
+                                                File</label>
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-danger light remove-img ms-2 btn-sm">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-outline-primary me-3"><a href="{% url 'MainSliderList' %}">Back</a></button>
+                            <button class="btn btn-primary" type="submit">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}
