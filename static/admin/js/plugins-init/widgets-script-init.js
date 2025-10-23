@@ -1424,9 +1424,10 @@
         
 	}
 	var overiewChart = function(){
+		console.log("ok2")
 		 var options = {
           series: [{
-          name: 'Number of Projects',
+          name: 'Number of p',
           type: 'column',
           data: [75, 85, 72, 100, 50, 100, 80, 75, 95, 35, 75,100]
         }, {

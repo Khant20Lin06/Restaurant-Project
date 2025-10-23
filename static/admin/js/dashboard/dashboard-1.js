@@ -9,11 +9,11 @@
 	var marketChart = function(){
 		 var options = {
           series: [{
-          name: 'series1',
-          data: [200, 400, 300, 400, 200, 400]
+          name: 'this week',
+          data: [1200, 1500, 1100, 1700, 1600, 2000]  // this week (sales in $)
         }, {
-          name: 'series2',
-          data: [500, 300, 400, 200, 500, 200]
+          name: 'last week',
+          data: [1000, 1300, 900, 1500, 1400, 1800]
         }],
           chart: {
           height: 280,
@@ -54,7 +54,7 @@
 		  },
 		},
         xaxis: {
-          categories: ["Week 01","Week 02","Week 03","Week 04","Week 05","Week 06"],
+          categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 		  labels:{
 			  style: {
 				colors: '#B5B5C3',
@@ -106,15 +106,19 @@
 				offsetX: -10,
 			},
 			series: [
-				 {
-					name: "New Clients",
-					data: [20, 40, 60, 35, 50, 70, 30, 15, 35, 40, 50, 60, 75, 40, 25, 70, 20, 40, 65, 50]
+				{
+					name: "New Customers",
+					data: [12, 18, 15, 20, 25, 30, 22]
 				},
 				{
-					name: "Retained Clients",
-					data: [-28, -32, -12, -5, -35, -10, -30, -29, -18, -25, -38, -12, -22, -39, -35, -30, -10, -20, -35, -38]
-				} 
-			],
+					name: "Returning Customers",
+					data: [-20, -22, -18, -25, -30, -28, -35]
+				}
+				],
+				xaxis: {
+				categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				},
+
 			
 			plotOptions: {
 				bar: {
@@ -195,19 +199,19 @@
 	}
 	var overiewChart = function(){
 		 var options = {
-          series: [{
-          name: 'Number of Projects',
-          type: 'column',
-          data: [75, 85, 72, 100, 50, 100, 80, 75, 95, 35, 75,100]
-        }, {
-          name: 'Revenue',
-          type: 'area',
-          data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50,42]
-        }, {
-          name: 'Active Projects',
-          type: 'line',
-          data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35,20]
-        }],
+        series: [{
+			name: 'Monthly Sales ($)',
+			type: 'column',
+			data: [8000, 9500, 8700, 11000, 12000, 10500, 9500, 13000, 12500, 11500, 14000, 15000]
+			}, {
+			name: 'Orders Served',
+			type: 'area',
+			data: [400, 500, 480, 600, 620, 550, 500, 650, 640, 610, 700, 750]
+			}, {
+			name: 'Active Dishes',
+			type: 'line',
+			data: [25, 28, 30, 32, 30, 35, 33, 34, 36, 35, 38, 40]
+			}],
           chart: {
           height: 300,
           type: 'line',
@@ -343,54 +347,62 @@
 			var newLabels = [];
 
 			switch(seriesType) {
-				case "week":
-					columnData = [75, 85, 72, 100, 50, 100, 80];
-					areaData = [44, 65, 55, 75, 45, 55, 40];
-					lineData = [30, 25, 45, 30, 25, 35];
-					newLabels =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] 
-					
-					
-					break;
-				case "month":
-					columnData = [20, 50, 80, 52, 10, 80, 50, 30, 95, 10, 60,85];
-					areaData = [40, 25, 85, 45, 85, 25, 95, 65, 45, 45, 20,12];
-					lineData = [65, 45, 25, 65, 45, 25, 75, 35, 65, 75, 15,65];
-					newLabels =['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] 
-					
-					break;
-				case "year":
-					columnData = [30, 20, 80, 52, 10, 90, 50, 30, 95, 20, 60,85];
-					areaData = [40, 25, 40, 45, 85, 25, 50, 65, 45, 60, 20,12];
-					lineData = [65, 45, 30, 65, 45, 25, 75, 40, 65, 50, 15,65];
-					newLabels =['2011', '2022', '2023', '2024', '2025', '2026', '2027','2028','2029','2030','2031','2032'] ;
-					break;
-				case "all":
-					columnData = [20, 50, 80, 60, 10, 80, 50, 40, 95, 20, 60,85];
-					areaData = [40, 25, 30, 45, 85, 25, 95, 65, 50, 45, 20,12];
-					lineData = [65, 45, 25, 65, 45, 25, 30, 35, 65, 75, 15,65];
-					break;
-				default:
-					columnData = [75, 80, 72, 100, 50, 100, 80, 30, 95, 35, 75,100];
-					areaData = [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50,42];
-					lineData = [30, 25, 45, 30, 25, 35, 20, 45, 35, 30, 35,20];
-			}
+    case "week":
+        // Weekly (Sun–Sat)
+        columnData = [1200, 1500, 1100, 1700, 1600, 2000, 1800];  // Sales ($)
+        areaData   = [90, 110, 95, 130, 125, 160, 150];           // Orders
+        lineData   = [25, 26, 28, 29, 30, 32, 33];                // Active Dishes
+        newLabels  = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        break;
+
+    case "month":
+        // Monthly (Jan–Dec)
+        columnData = [8500, 9500, 8700, 11000, 12000, 10500, 9800, 13000, 12500, 11500, 14000, 15000]; // Sales ($)
+        areaData   = [420, 480, 460, 540, 600, 560, 530, 620, 610, 580, 660, 700];                     // Orders
+        lineData   = [25, 26, 28, 30, 29, 31, 32, 33, 34, 33, 35, 36];                                // Active Dishes
+        newLabels  = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        break;
+
+    case "year":
+        // Yearly (past years)
+        columnData = [95000, 105000, 120000, 135000, 150000, 165000, 172000, 180000, 190000, 205000, 210000, 225000]; // Annual sales
+        areaData   = [5200, 5400, 5900, 6200, 6400, 6700, 7000, 7200, 7600, 7800, 8000, 8300];                         // Orders served
+        lineData   = [25, 26, 27, 29, 30, 31, 33, 34, 35, 36, 37, 38];                                                 // Avg dishes on menu
+        newLabels  = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+        break;
+
+    case "all":
+        // All-time combined
+        columnData = [1000, 1500, 1300, 1700, 1900, 1800, 1600, 1750, 1900, 1850, 2000, 2200];
+        areaData   = [80, 100, 90, 120, 130, 125, 110, 115, 130, 125, 135, 140];
+        lineData   = [25, 27, 28, 30, 32, 31, 30, 31, 33, 34, 35, 36];
+        newLabels  = ['Q1', 'Q2', 'Q3', 'Q4', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6', 'Y7', 'Y8'];
+        break;
+
+    default:
+        columnData = [1200, 1500, 1100, 1700, 1600, 2000, 1800];
+        areaData   = [90, 110, 95, 130, 125, 160, 150];
+        lineData   = [25, 26, 28, 29, 30, 32, 33];
+        newLabels  = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+}
+
 			chart.updateOptions({
 			  labels: newLabels
 			});
 			chart.updateSeries([
 				{
-					name: "Number of Student",
+					name: "Monthly Sales ($)",
 					type: 'column',
 					data: columnData
 					
 					
 				},{
-					name: 'Revenue',
+					name: 'Orders Served',
 					type: 'area',
 					data: areaData
 					
 				},{
-					name: 'Active Teacher',
+					name: 'Active Dishes',
 					type: 'line',
 					data: lineData
 					
