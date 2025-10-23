@@ -143,11 +143,15 @@
                 <li><a href="{% url 'shopPage' %}">Shop</a></li>
                 <li><a href="{% url 'newPage' %}">News</a></li>
                 <li><a href="{% url 'contactPage' %}">Contact Us</a></li>
-{% if CustomerUser.is_authentication %}
-                <li><a href="{% url 'loginPage' %}">Login</a></li>
-                <li><a href="{% url 'registerPage' %}">Register</a></li>
-{% else %}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+{% if request.user.is_authenticated %}    
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% if request.user.role == "admin" %}              
+                <li><a href="{% url 'admin_dashboard' %}">AdminDashboard</a></li>
+            {% endif %}
+{% else %}   
+            <li><a href="{% url 'loginPage' %}">Login</a></li>
+            <li><a href="{% url 'registerPage' %}">Register</a></li>
 {% endif %}
             </ul>
         </div>
@@ -220,6 +224,14 @@
                                                 <!-- Menu Items -->
 
                                                 {% if request.user.is_authenticated %}
+            {% if request.user.role == "admin" %}         
+                                                <div class="border-t border-gray-100 mt-2 pt-2">
+                                                    <a href="{% url 'admin_dashboard' %}"
+                                                        class="flex items-center px-4 py-2 text-sm text-black-600 hover:bg-green-50 transition-colors duration-150">
+                                                        AdminDashboard
+                                                    </a>
+                                                </div>
+            {% endif %}
                                                 <div class="border-t border-gray-100 mt-2 pt-2">
                                                     <a href="{% url 'logout' %}"
                                                         class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150">

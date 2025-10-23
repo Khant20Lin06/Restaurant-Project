@@ -11,7 +11,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password, ValidationError
 from .forms import CommentForm
-
+from django.db.models import Count
 
 User = get_user_model()
 # Create your views here.
@@ -127,11 +127,26 @@ def ShopPage(request):
     Gallery = GalleryModel.objects.all()
     products = Product.objects.all()
     default_product = Product.objects.first()
+    
+    orderby = request.GET.get('orderby', 'default')
+
+    if orderby == 'popularity':
+        products = products.annotate(total_sales=Count('orderitem')).order_by('-total_sales')
+    elif orderby == 'date':
+        products = products.order_by('-created_at')
+    elif orderby == 'price':
+        products = products.order_by('disPrice') 
+    elif orderby == 'price-desc':
+        products = products.order_by('-disPrice')
+    else:
+        products = products.order_by('id')
+
     context = {
         'ShopSlider': ShopSlider,
         'MenuCategory': MenuCategory,
         'Gallery': Gallery,
         'products': products,
+        'orderby': orderby,
         'default_product': default_product,
     }
     return render(request, 'shop.html', context)
@@ -639,3 +654,24 @@ def search_view(request):
         'CartItemCount': CartItemCount,
     }
     return render(request, 'header.html', context)
+
+    orderby = request.GET.get('orderby', 'default')  
+
+    if orderby == 'popularity':
+        products = products.order_by('-total_sales')  
+    elif orderby == 'rating':
+        products = products.order_by('-average_rating')  
+    elif orderby == 'date':
+        products = products.order_by('-created_at')  
+    elif orderby == 'price':
+        products = products.order_by('price')  
+    elif orderby == 'price-desc':
+        products = products.order_by('-price')  
+    else:
+        products = products.order_by('id')  
+
+    context = {
+        'products': products,
+        'orderby': orderby
+    }
+    return render(request, 'shop.html', context)
