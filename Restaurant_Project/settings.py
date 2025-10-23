@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Restaurant_Project.middleware.AdminAccessControlMiddleware',
 ]
 
 ROOT_URLCONF = 'Restaurant_Project.urls'
