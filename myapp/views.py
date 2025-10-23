@@ -655,23 +655,4 @@ def search_view(request):
     }
     return render(request, 'header.html', context)
 
-    orderby = request.GET.get('orderby', 'default')  
-
-    if orderby == 'popularity':
-        products = products.order_by('-total_sales')  
-    elif orderby == 'rating':
-        products = products.order_by('-average_rating')  
-    elif orderby == 'date':
-        products = products.order_by('-created_at')  
-    elif orderby == 'price':
-        products = products.order_by('price')  
-    elif orderby == 'price-desc':
-        products = products.order_by('-price')  
-    else:
-        products = products.order_by('id')  
-
-    context = {
-        'products': products,
-        'orderby': orderby
-    }
-    return render(request, 'shop.html', context)
+    
