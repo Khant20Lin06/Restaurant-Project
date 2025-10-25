@@ -32,4 +32,4 @@ def OrderList(request):
         'orders' : orders,
         'sort_by': sort_by
     }
-    return render(request,'Order/OrderList.html',context)
+    return render(request,'Order/orderList.html',context)
